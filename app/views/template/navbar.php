@@ -46,7 +46,7 @@
     <span class="close" id="closeModal">&times;</span>
     <h2>Login</h2>
     <span>Silahkan login untuk mendapatkan fitur maximal dari website kami</span>
-    <p>Belum punya akun? <a href="">daftar</a></p>
+    <p>Belum punya akun? <a href="<?= BASEURL; ?>/register">daftar</a></p>
     <form action="login.php" method="post">
       <label for="email">Email or Username</label>
       <input type="email" id="email" name="email" required>
