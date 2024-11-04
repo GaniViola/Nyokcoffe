@@ -1,0 +1,244 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Variabel CSS */
+:root {
+  --header-height: 4rem;
+  --color-primary: #2e4471;
+  --color-primary-dark: #1d335f;
+  --title-color: #393939;
+  --text-color: #707070;
+  --body-color: #f8f9fa; /* Warna latar belakang */
+  --container-color: #fff;
+
+  /* Font */
+  --body-font: "Poppins", sans-serif;
+  --font-medium: 500;
+  --font-bold: 700;
+
+  /* Z Index */
+  --z-fixed: 100;
+}
+
+/* Reset CSS */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Navbar Styles */
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: var(--body-color);
+  transition: background-color 0.3s, box-shadow 0.3s; /* Tambahkan transisi untuk box-shadow */
+  position: fixed; /* Tetap di atas saat scroll */
+  width: 100%; /* Lebar 100% */
+  top: 0; /* Posisi atas */
+  z-index: var(--z-fixed); /* Pastikan di atas konten lainnya */
+}
+
+/* Menambahkan bayangan saat navbar aktif */
+.nav.scrolled {
+  background-color: var(--body-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Bayangan navbar */
+}
+
+/* Navbar Toggle Styles */
+.nav_toggle {
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none; /* Sembunyikan toggle di layar besar */
+}
+
+.nav_logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 40px; /* Ukuran logo */
+  height: auto;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: var(--font-bold);
+  color: var(--text-color);
+  margin-left: 0.5rem; /* Jarak antara logo dan teks */
+}
+
+.nav_menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav_list {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav_item {
+  list-style: none; /* Menghilangkan bullet list */
+}
+
+.nav_link {
+  color: var(--text-color);
+  font-weight: var(--font-medium);
+  text-transform: capitalize;
+  transition: color 0.3s;
+}
+
+.nav_link:hover {
+  color: var(--color-primary);
+}
+
+.nav_icons {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Responsive Styles for Mobile */
+@media screen and (max-width: 768px) {
+  .nav_toggle {
+    display: block; /* Tampilkan toggle di layar kecil */
+  }
+
+  .logo-img {
+    display: none;
+  }
+  .nav_menu {
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    text-align: center;
+    background-color: var(--body-color);
+    transition: 0.4s;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 1rem 1rem;
+    z-index: var(--z-fixed);
+  }
+
+  .nav_menu.show-menu {
+    top: var(--header-height); /* Saat toggle aktif */
+  }
+
+  .nav_list {
+    flex-direction: column; /* Menu jadi kolom */
+    gap: 1rem; /* Jarak antar item menu */
+  }
+
+  .nav_item {
+    margin-bottom: 1rem; /* Jarak antara item */
+  }
+}
+
+/* Style dasar untuk modal */
+.modal {
+  display: none; /* Sembunyikan modal secara default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.1); /* Latar belakang gelap */
+  justify-content: center;
+  align-items: center;
+}
+
+.modal span {
+  margin-top: 10px;
+  display: block; /* Membuat elemen ini menjadi blok sehingga margin berfungsi */
+  margin-bottom: 15px; /* Jarak bawah untuk teks deskripsi */
+}
+
+.modal p {
+  margin-bottom: 10px; /* Jarak atas untuk paragraf */
+}
+
+/* Konten modal */
+.modal_content {
+  background-color: #fff; /* Latar belakang putih untuk konten modal */
+  padding: 20px; /* Ruang dalam */
+  width: 90%; /* Lebar responsif */
+  max-width: 400px; /* Lebar maksimum */
+  border-radius: 8px; /* Sudut melingkar */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan untuk efek 3D */
+  position: relative; /* Untuk menempatkan tombol close */
+}
+
+/* Tombol close */
+.close {
+  position: absolute; /* Posisi absolut dalam konten modal */
+  top: 10px; /* Jarak dari atas */
+  right: 15px; /* Jarak dari kanan */
+  color: #aaa; /* Warna teks */
+  font-size: 24px; /* Ukuran font */
+  font-weight: bold; /* Ketebalan font */
+  cursor: pointer; /* Tangan saat hover */
+}
+
+.close:hover,
+.close:focus {
+  color: #333; /* Warna saat hover */
+}
+
+/* Styling form */
+.modal_content form {
+  display: flex; /* Menggunakan flexbox untuk penataan form */
+  flex-direction: column; /* Mengatur kolom */
+}
+
+.modal_content label {
+  margin-bottom: 5px; /* Jarak bawah untuk label */
+  font-weight: bold; /* Ketebalan font untuk label */
+}
+
+.modal_content input {
+  padding: 10px; /* Ruang dalam input */
+  margin-bottom: 15px; /* Jarak bawah untuk input */
+  border: 1px solid #ccc; /* Border abu-abu */
+  border-radius: 4px; /* Sudut melingkar untuk input */
+}
+
+.modal_content button {
+  padding: 10px; /* Ruang dalam tombol */
+  background-color: #333; /* Latar belakang tombol */
+  color: #fff; /* Warna teks tombol */
+  border: none; /* Tanpa border */
+  border-radius: 4px; /* Sudut melingkar */
+  cursor: pointer; /* Tangan saat hover */
+  font-weight: bold; /* Ketebalan font untuk tombol */
+}
+
+.modal_content button:hover {
+  background-color: #555; /* Warna saat hover pada tombol */
+}
+
+div a i {
+  color: #000;
+}
