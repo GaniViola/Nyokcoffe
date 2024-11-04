@@ -3,8 +3,8 @@ class Home extends Controller{
     public function index(){
         $data['judul'] = 'Home';
         $this->view('template/header', $data);
-        $this->view('template/navbar');
+        // $this->view('template/navbar');
         $this->view('home/index');
-        $this->view('template/footer');
+        // $this->view('template/footer');
     }
 }
