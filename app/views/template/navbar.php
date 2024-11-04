@@ -10,12 +10,12 @@
     <div class="nav_menu" id="nav-menu">
       <ul class="nav_list">
         <li class="nav_item">
-          <a href="http://localhost/phpmvc/public" class="nav_link active-link"
+          <a href="#" class="nav_link active-link"
             >Home</a
           >
         </li>
         <li class="nav_item">
-          <a href="http://localhost/phpmvc/public/about" class="nav_link"
+          <a href="#/about" class="nav_link"
             >About</a
           >
         </li>
