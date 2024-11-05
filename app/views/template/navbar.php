@@ -3,14 +3,14 @@
     <div class="nav_toggle" id="nav-toggle">
       <i class="bx bx-menu"></i>
     </div>
-    <a href="#" class="nav_logo">
-      <img src="logo.png" alt="" class="logo-img" />
+    <a href="<?= BASEURL; ?>" class="nav_logo">
+      <img src="<?= BASEURL; ?>/img/logo.png" alt="" class="logo-img" />
       <span class="logo-text">Nyok coffe</span>
     </a>
     <div class="nav_menu" id="nav-menu">
       <ul class="nav_list">
         <li class="nav_item">
-          <a href="#" class="nav_link active-link"
+          <a href="<?= BASEURL; ?>" class="nav_link active-link"
             >Home</a
           >
         </li>
