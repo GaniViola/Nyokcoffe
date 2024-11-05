@@ -1,1 +1,1 @@
-<br><br><br><h1>ini home</h1>
+<br><br><br><h1>home/index</h1>
