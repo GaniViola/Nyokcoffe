@@ -17,9 +17,9 @@ class Register_model {
     }
 
     public function createAkun($data){
-        $query = "INSERT INTO tbl_users 
+        $query = "INSERT INTO tbl_users (username, email, no_tlp, alamat, password, role)
                 VALUES 
-            ('', :username, :email, :no_tlp, :alamat, :password)";
+            (:username, :email, :no_tlp, :alamat, :password, 'user')";
 
         $this->db->query($query);
         $this->db->bind('username', $data['username']);
