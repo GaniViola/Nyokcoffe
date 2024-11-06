@@ -32,7 +32,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="confirm_password" class="block text-gray-700 font-medium mb-2">Konfirmasi Password</label>
-                    <input type="password" id="confirm_password" name="confirm_password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="password" id="confirm_password" name="kpwd" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
                 <div class="mb-4">
                     <label for="phone" class="block text-gray-700 font-medium mb-2">Nomer Telepon</label>

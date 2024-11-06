@@ -1,6 +1,6 @@
 <?php
 
-class Register_model {
+class User_model {
     private $table = 'tbl_users';
     private $db;
     
@@ -16,17 +16,17 @@ class Register_model {
         return $this->db->rowCount();
     }
 
-    public function createAkun($data){
+    public function createAkun($username, $email, $password, $notelp, $alamat){
         $query = "INSERT INTO tbl_users (username, email, no_tlp, alamat, password, role)
                 VALUES 
             (:username, :email, :no_tlp, :alamat, :password, 'user')";
 
         $this->db->query($query);
-        $this->db->bind('username', $data['username']);
-        $this->db->bind('email', $data['email']);
-        $this->db->bind('no_tlp', $data['no_tlp']);
-        $this->db->bind('alamat', $data['alamat']);
-        $this->db->bind('password', $data['password']);
+        $this->db->bind('username', $username);
+        $this->db->bind('email', $email);
+        $this->db->bind('no_tlp', $notelp);
+        $this->db->bind('alamat', $alamat);
+        $this->db->bind('password', $password);
 
         $this->db->execute();
         return $this->db->rowCount();

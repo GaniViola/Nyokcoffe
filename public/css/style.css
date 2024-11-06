@@ -165,7 +165,6 @@ a {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.1); /* Latar belakang gelap */
   justify-content: center;
   align-items: center;
 }
@@ -187,7 +186,7 @@ a {
   width: 90%; /* Lebar responsif */
   max-width: 400px; /* Lebar maksimum */
   border-radius: 8px; /* Sudut melingkar */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan untuk efek 3D */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Bayangan untuk efek 3D */
   position: relative; /* Untuk menempatkan tombol close */
 }
 
@@ -241,4 +240,102 @@ a {
 
 div a i {
   color: #000;
+}
+
+/* Home Section Styles */
+.home {
+  height: 100vh; /* Tinggi penuh viewport */
+  display: flex; /* Menggunakan flexbox untuk memusatkan konten */
+  justify-content: center; /* Memusatkan secara horizontal */
+  align-items: center; /* Memusatkan secara vertikal */
+  text-align: left; /* Memusatkan teks */
+  position: relative; /* Posisi relatif untuk gambar */
+}
+
+.home_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* Membatasi lebar maksimum */
+  width: 100%; /* Lebar 100% */
+  padding: 0 2rem; /* Jarak sisi */
+  margin: 0 auto; /* Membuat container di tengah */
+}
+
+.home_data {
+  max-width: 600px; /* Lebar maksimum untuk teks */
+}
+
+.home_title {
+  font-size: 2.5rem; /* Ukuran font judul */
+  font-weight: var(--font-bold);
+  color: var(--color-primary); /* Warna judul */
+  margin-bottom: 1rem; /* Jarak bawah */
+}
+
+.home_subtitle {
+  font-size: 1.2rem; /* Ukuran font subjudul */
+  color: var(--text-color); /* Warna teks */
+  margin-bottom: 1.5rem; /* Jarak bawah */
+}
+
+.button {
+  padding: 0.75rem 1.5rem; /* Jarak dalam tombol */
+  background-color: var(--color-primary); /* Warna tombol */
+  color: #fff; /* Warna teks tombol */
+  border: none; /* Menghilangkan border */
+  border-radius: 5px; /* Membuat sudut melengkung */
+  cursor: pointer; /* Tangan saat hover */
+  transition: background-color 0.3s; /* Transisi warna tombol */
+}
+
+.button:hover {
+  background-color: var(--color-primary-dark); /* Warna saat hover */
+}
+
+.home_img {
+  position: absolute; /* Mengatur posisi gambar */
+  right: 0; /* Menggeser gambar ke kanan */
+  bottom: 0; /* Menggeser gambar ke bawah */
+  max-width: 50%; /* Mengatur lebar maksimal gambar */
+  height: auto; /* Tinggi otomatis sesuai dengan aspek rasio */
+}
+
+/* Responsive Styles for Mobile */
+/* Responsive Styles for Mobile */
+@media screen and (max-width: 768px) {
+  .home {
+    flex-direction: column; /* Menjadi kolom untuk mobile */
+    justify-content: flex-start; /* Memusatkan ke atas */
+    align-items: center; /* Memusatkan horizontal */
+    text-align: center; /* Teks di tengah */
+    margin-top: var(
+      --header-height
+    ); /* Tambahkan margin atas untuk memberi ruang dari navbar */
+  }
+
+  .home_container {
+    flex-direction: column; /* Menjadi kolom */
+    text-align: left;
+    align-items: center; /* Memusatkan horizontal */
+  }
+
+  .home_title {
+    font-size: 2rem; /* Ukuran font judul lebih kecil */
+  }
+
+  .home_subtitle {
+    font-size: 1rem; /* Ukuran font subjudul lebih kecil */
+  }
+
+  .button {
+    padding: 0.5rem 1rem; /* Ukuran tombol lebih kecil */
+    font-size: 1rem; /* Ukuran font tombol */
+  }
+
+  .home_img {
+    position: static; /* Gambar mengikuti alur dokumen */
+    max-width: 80%; /* Memperbesar lebar gambar */
+    margin-top: 1.5rem; /* Jarak atas untuk pemisah */
+  }
 }
