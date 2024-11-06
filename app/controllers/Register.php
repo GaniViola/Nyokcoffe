@@ -62,7 +62,12 @@ class Register extends Controller{
 
             // Creat akun
             if ($this->model('User_model')->createAkun($username, $email, $password, $notelp, $alamat) > 0){
-                header('Location: '.BASEURL);
+                Flasher::setFlash('berhasil', 'melakukan registrasi', 'success');
+                header('Location: '.BASEURL.'/register');
+                exit;
+            } else {
+                Flasher::setFlash('gagal', 'melakukan registrasi', 'danger');
+                header('Location: '.BASEURL.'/register');
                 exit;
             }
 
