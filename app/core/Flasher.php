@@ -15,4 +15,35 @@ class Flasher {
             unset($_SESSION['flash']);
         }
     }
+
+    public static function setLogin(){
+        $_SESSION['user'] = true;
+    }
+
+    public static function Login(){
+        if (isset($_SESSION['user'])){
+            echo '<li class="nav_item dropdown">
+                    <a href="#" class="nav_link user-name">
+                        <span class="nav_icons"><i class="bx bxs-user-circle"></i></span>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">Profile</a>
+                        <a href="#">Settings</a>
+                        <a href="logout.php">Logout</a>
+                    </div>';
+        } else {
+            echo '<a href="#" class="nav_user">
+            <i class="bx bx-user"></i>
+            </a>';
+        }
+    }
+
+    public static function navLogin(){
+        if (isset($_SESSION['user'])) {
+            echo '<li class="nav_item hidden">
+                    <a href="" class="nav_link">Logout</a>
+                  </li>';
+        }
+    }
+    
 }

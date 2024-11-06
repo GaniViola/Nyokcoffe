@@ -15,7 +15,7 @@
           >
         </li>
         <li class="nav_item">
-          <a href="#/about" class="nav_link"
+          <a href="#" class="nav_link"
             >About</a
           >
         </li>
@@ -28,12 +28,12 @@
         <li class="nav_item">
           <a href="#contact" class="nav_link">Contact</a>
         </li>
+        <?php Flasher::navLogin(); ?>
       </ul>
     </div>
     <div class="nav_icons">
-        <a href="#" class="nav_user">
-            <i class="bx bx-user"></i>
-        </a> <!-- Added class "nav_user" -->
+      <?php Flasher::Login(); ?>
+    <!-- Added class "nav_user" -->
     <a href=""><i class='bx bx-heart'></i></a>
     <a href=""><i class="bx bx-shopping-bag"></i></a>
 </div>

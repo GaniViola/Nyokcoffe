@@ -339,3 +339,82 @@ div a i {
     margin-top: 1.5rem; /* Jarak atas untuk pemisah */
   }
 }
+
+/* Dropdown container */
+.nav_item.dropdown {
+  position: relative;
+  display: inline-flex; /* Menggunakan inline-flex agar item dalam dropdown dapat disejajarkan */
+  align-items: center; /* Menyelaraskan elemen secara vertikal */
+}
+
+.hidden {
+  display: none;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 150px; /* Lebar dropdown yang cukup */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15); /* Bayangan halus untuk dropdown */
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  z-index: 1;
+  opacity: 0; /* Menyembunyikan dropdown secara default */
+  visibility: hidden; /* Menyembunyikan dropdown */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  transform: translateY(5px); /* Efek melayang ke bawah */
+  top: 100%; /* Membuat dropdown muncul tepat di bawah item */
+  left: 0; /* Sejajar dengan kiri item */
+}
+
+/* Menampilkan dropdown saat hover pada item */
+.nav_item.dropdown:hover .dropdown-content {
+  display: block;
+  opacity: 1; /* Menampilkan dropdown */
+  transform: translateY(0); /* Reset posisi dropdown */
+  visibility: visible; /* Menampilkan dropdown */
+}
+
+/* Style untuk nama pengguna di navbar */
+.nav_item.dropdown .user-name {
+  display: flex;
+  align-items: center;
+  color: var(--text-color); /* Sesuaikan warna teks */
+  font-size: 1.1rem; /* Ukuran font */
+  cursor: pointer;
+  padding: 8px 12px; /* Padding agar lebih proporsional */
+  margin-right: 1rem; /* Memberikan jarak antar elemen */
+}
+
+.nav_item.dropdown:hover .user-name {
+  color: var(--color-primary); /* Warna berubah saat hover */
+}
+
+/* Hover style untuk link dropdown */
+.dropdown-content a {
+  color: #333; /* Warna teks */
+  padding: 10px 16px; /* Padding untuk setiap link */
+  text-decoration: none;
+  display: block;
+  font-size: 1rem; /* Ukuran font */
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect pada item dropdown */
+.dropdown-content a:hover {
+  background-color: #f0f0f5; /* Warna latar belakang saat hover */
+  color: #2e4471; /* Warna teks saat hover */
+}
+
+/* Responsif */
+@media screen and (max-width: 768px) {
+  .nav_item.dropdown .user-name {
+    display: none; /* Menyembunyikan elemen user-name */
+  }
+
+  .hidden {
+    display: block; /* Atur display block atau inline sesuai kebutuhan */
+  }
+}
