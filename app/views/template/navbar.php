@@ -48,8 +48,8 @@
     <span>Silahkan login untuk mendapatkan fitur maximal dari website kami</span>
     <p>Belum punya akun? <a href="<?= BASEURL; ?>/register">daftar</a></p>
     <form action="<?= BASEURL; ?>/login" method="post">
-      <label for="email">Email or Username</label>
-      <input type="text" id="email" name="email" required>
+      <label for="EmailorUser">Email or Username</label>
+      <input type="text" id="EmailorUser" name="EmailorUser" required>
       
       <label for="password">Password</label>
       <input type="password" id="password" name="password" required>

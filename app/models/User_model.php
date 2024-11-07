@@ -31,4 +31,13 @@ class User_model {
         $this->db->execute();
         return $this->db->rowCount();
     }
+
+    public function cekEmailorUser($EmailorUser){
+        $query = "SELECT * FROM tbl_users WHERE username = :username OR email = :email";
+        $this->db->query($query);
+        $this->db->bind('username', $EmailorUser);
+        $this->db->bind('email', $EmailorUser);
+
+        return $this->db->single();
+    }
 }

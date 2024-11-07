@@ -24,13 +24,14 @@ class Flasher {
         if (isset($_SESSION['user'])){
             echo '<li class="nav_item dropdown">
                     <a href="#" class="nav_link user-name">
-                        <span class="nav_icons"><i class="bx bxs-user-circle"></i></span>
+                        gani
                     </a>
                     <div class="dropdown-content">
                         <a href="#">Profile</a>
                         <a href="#">Settings</a>
-                        <a href="logout.php">Logout</a>
-                    </div>';
+                        <a href="'.BASEURL.'/logout">Logout</a>
+                    </div>
+                </li>';
         } else {
             echo '<a href="#" class="nav_user">
             <i class="bx bx-user"></i>
@@ -41,7 +42,7 @@ class Flasher {
     public static function navLogin(){
         if (isset($_SESSION['user'])) {
             echo '<li class="nav_item hidden">
-                    <a href="" class="nav_link">Logout</a>
+                    <a href="'.BASEURL.'/logout" class="nav_link">Logout</a>
                   </li>';
         }
     }
