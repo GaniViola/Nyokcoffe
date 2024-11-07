@@ -3,10 +3,6 @@
 class Login extends Controller{
     public function index(){
 
-        if (isset($_SESSION['user'])){
-            Flasher::Login();
-        }
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $EmailorUser = $_POST['EmailorUser'];
             $password = $_POST['password'];
