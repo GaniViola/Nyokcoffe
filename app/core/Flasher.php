@@ -16,15 +16,15 @@ class Flasher {
         }
     }
 
-    public static function setLogin(){
-        $_SESSION['user'] = true;
+    public static function setLogin($EmailorUser){
+        $_SESSION['user'] = ['EmailorUser' => $EmailorUser];
     }
 
     public static function Login(){
         if (isset($_SESSION['user'])){
             echo '<li class="nav_item dropdown">
                     <a href="#" class="nav_link user-name">
-                        gani
+                        '.$_SESSION['user']['EmailorUser'].'
                     </a>
                     <div class="dropdown-content">
                         <a href="#">Profile</a>

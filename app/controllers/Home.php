@@ -1,6 +1,7 @@
 <?php 
 class Home extends Controller{
     public function index(){
+        
         if (isset($_SESSION['user'])){
             Flasher::Login();
         }

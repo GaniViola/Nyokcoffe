@@ -11,10 +11,10 @@ class Login extends Controller{
             if ($result > 0) {
                 if (password_verify($password, $result['password'])){
                     if ($result['role'] === 'admin'){
-                        Flasher::setLogin();
+                        Flasher::setLogin($EmailorUser);
                         echo "halaman admin";
                     }else{
-                        Flasher::setLogin();
+                        Flasher::setLogin($EmailorUser);
                         $data['judul'] = 'Home';
                         $this->view('template/header', $data);
                         $this->view('template/navbar');
