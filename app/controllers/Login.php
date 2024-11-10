@@ -14,16 +14,33 @@ class Login extends Controller {
                     $_SESSION['role'] = $result['role'];
                     setcookie('myKey', $result['id_user'], time() + 60);
                     setcookie('key', hash('whirlpool', $result['username']), time() + 60);
+
                     if ($_SESSION['role'] === 'admin'){
-                        header('Location: '.BASEURL.'/admin');
-                        exit;
+                        echo "<script>
+                                alert('Berhasil login');
+                                document.location.href = 'http://localhost/Nyokcoffe/public/admin';  
+                           </script>";
+                        // header('Location: '.BASEURL.'/admin');
+                        // exit;
                     } else {
-                        header('Location: '.BASEURL);  // Redirect ke home untuk user biasa
+                        echo "<script>
+                                alert('Berhasil login');
+                                document.location.href = 'http://localhost/Nyokcoffe/public';  
+                           </script>";
+                        // header('Location: '.BASEURL);  
                     }
-                    exit();  // Pastikan exit setelah redirect
+                    exit();  
                 } else {
-                    echo "Password tidak sesuai";
+                    echo "<script>
+                    alert('Password tidak sesuai');
+                    document.location.href = 'http://localhost/Nyokcoffe/public';  
+                    </script>";
                 }
+            }else {
+                echo "<script>
+                    alert('Username tidak di temukan');
+                    document.location.href = 'http://localhost/Nyokcoffe/public';  
+                    </script>";
             }
         } else {
             header('Location: '.BASEURL);
