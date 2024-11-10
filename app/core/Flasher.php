@@ -17,14 +17,14 @@ class Flasher {
     }
 
     public static function setLogin($EmailorUser){
-        $_SESSION['user'] = ['EmailorUser' => $EmailorUser];
+        $_SESSION['login'] = ['EmailorUser' => $EmailorUser];
     }
-
+    
     public static function Login(){
-        if (isset($_SESSION['user'])){
+        if (isset($_SESSION['login'])){
             echo '<li class="nav_item dropdown">
                     <a href="#" class="nav_link user-name">
-                        '.$_SESSION['user']['EmailorUser'].'
+                        '.$_SESSION['EmailorUser'].'
                     </a>
                     <div class="dropdown-content">
                         <a href="#">Profile</a>
@@ -40,11 +40,15 @@ class Flasher {
     }
 
     public static function navLogin(){
-        if (isset($_SESSION['user'])) {
+        if (isset($_SESSION['login'])) {
             echo '<li class="nav_item hidden">
                     <a href="'.BASEURL.'/logout" class="nav_link">Logout</a>
                   </li>';
         }
+    }
+
+    public static function getSession(){
+        echo $_SESSION['login']['EmailorUser'];
     }
     
 }

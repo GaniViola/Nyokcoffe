@@ -40,4 +40,10 @@ class User_model {
 
         return $this->db->single();
     }
+
+    public function getUserById($userID) {
+        $this->db->query('SELECT * FROM tbl_users WHERE id_user = :id');
+        $this->db->bind(':id', $userID);
+        return $this->db->single();
+    }
 }
