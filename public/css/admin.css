@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main {
+  /* min-height: 100vh; */
+  width: 100%;
+  overflow: hidden;
+  transition: all 0.35s ease-in-out;
+  background-color: #fafbfe;
+}
+
+#sidebar {
+  width: 70px;
+  min-width: 70px;
+  z-index: 1000;
+  transition: all 0.25s ease-in-out;
+  background-color: #1d335f;
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar.expand {
+  width: 200px;
+  min-width: 200px;
+}
+
+.toggle-btn {
+  background-color: transparent;
+  cursor: pointer;
+  border: 0;
+  padding: 1rem 1.5rem;
+}
+
+.toggle-btn i {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.sidebar-logo {
+  margin: auto 0;
+}
+
+.sidebar-logo a {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+#sidebar:not(.expand) .sidebar-logo,
+#sidebar:not(.expand) a.sidebar-link span {
+  display: none;
+}
+
+.sidebar-nav {
+  padding: 2rem 0;
+  flex: 1 1 auto;
+}
+
+a.sidebar-link {
+  padding: 0.625rem 1.625rem;
+  color: #fff;
+  display: block;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-link i {
+  font-size: 1.1rem;
+  margin-right: 0.75rem;
+}
+
+a.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.075);
+  border-left: 3px solid #3b7ddd;
+}
+
+.sidebar-item {
+  position: relative;
+}
+
+/* Menambahkan margin pada elemen dropdown di sebelah kanan */
+.navbar-nav .dropdown {
+  margin-left: 15px; /* Menambahkan jarak antara ikon pesan dan dropdown */
+}
+
+/* Menambahkan margin pada elemen form pencarian untuk layar kecil */
+@media (max-width: 991px) {
+  .navbar-nav .d-flex {
+    justify-content: flex-start; /* Memastikan elemen-elemen berada di sebelah kiri */
+  }
+  .navbar-nav .dropdown {
+    margin-left: 0;
+    margin-top: 10px; /* Memberikan jarak atas untuk dropdown */
+  }
+  .sidebar-nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Responsif untuk sidebar */
+@media (max-width: 768px) {
+  #sidebar {
+    width: 50px; /* Lebih sempit pada layar kecil */
+  }
+  #sidebar.expand {
+    width: 200px;
+  }
+  .sidebar-nav {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

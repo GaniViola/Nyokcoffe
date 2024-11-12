@@ -12,8 +12,8 @@ class Login extends Controller {
                     $_SESSION['login'] = true;
                     $_SESSION['EmailorUser'] = $EmailorUser;
                     $_SESSION['role'] = $result['role'];
-                    setcookie('myKey', $result['id_user'], time() + 60);
-                    setcookie('key', hash('whirlpool', $result['username']), time() + 60);
+                    setcookie('myKey', $result['id_user'], time() + 3600);
+                    setcookie('key', hash('whirlpool', $result['username']), time() + 3600);
 
                     if ($_SESSION['role'] === 'admin'){
                         echo "<script>

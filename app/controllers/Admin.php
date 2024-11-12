@@ -19,8 +19,19 @@ class Admin extends Controller {
             header('Location: '.BASEURL);
             exit;
         }
-
-        $this->view('admin/template/header');
+        $data['judul'] = 'admin';
+        $this->view('admin/template/header', $data);
+        $this->view('admin/template/sidebar');
+        $this->view('admin/template/footer');
         
+    }
+
+    public function produk(){
+        $data['judul'] = 'Data Produk';
+        $data['produk'] = $this->model('Produk_model')->getAlldata();
+        $this->view('admin/template/header', $data);
+        $this->view('admin/template/sidebar');
+        $this->view('admin/produk/index', $data);
+        $this->view('admin/template/footer');
     }
 }
