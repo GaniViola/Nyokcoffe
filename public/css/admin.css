@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,700&display=swap");
 
 ::after,
 ::before {
@@ -20,6 +20,10 @@ h1 {
   font-size: 1.5rem;
 }
 
+h2 {
+  font-weight: 600; /* Ini akan membuat teks lebih tebal */
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }
@@ -28,6 +32,7 @@ body {
   display: flex;
   width: 100%;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .main {
@@ -108,6 +113,23 @@ a.sidebar-link:hover {
   position: relative;
 }
 
+#sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+  position: absolute;
+  top: 0;
+  left: 70px;
+  background-color: #1d335f;
+  padding: 0;
+  min-width: 15rem;
+  display: none;
+}
+
+#sidebar:not(.expand) .sidebar-item:hover .has-dropdown + .sidebar-dropdown {
+  display: block;
+  max-height: 15em;
+  width: 100%;
+  opacity: 1;
+}
+
 /* Menambahkan margin pada elemen dropdown di sebelah kanan */
 .navbar-nav .dropdown {
   margin-left: 15px; /* Menambahkan jarak antara ikon pesan dan dropdown */
@@ -131,13 +153,26 @@ a.sidebar-link:hover {
 /* Responsif untuk sidebar */
 @media (max-width: 768px) {
   #sidebar {
-    width: 50px; /* Lebih sempit pada layar kecil */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 50px;
   }
   #sidebar.expand {
     width: 200px;
   }
+
   .sidebar-nav {
     padding-left: 0;
     padding-right: 0;
+  }
+
+  .main {
+    margin-left: 70px; /* Sesuaikan lebar sidebar */
+    margin-top: 0;
+    margin-bottom: 50px;
+    overflow-y: auto;
+    padding: 1rem;
   }
 }

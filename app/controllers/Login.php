@@ -16,12 +16,8 @@ class Login extends Controller {
                     setcookie('key', hash('whirlpool', $result['username']), time() + 3600);
 
                     if ($_SESSION['role'] === 'admin'){
-                        echo "<script>
-                                alert('Berhasil login');
-                                document.location.href = 'http://localhost/Nyokcoffe/public/admin';  
-                           </script>";
-                        // header('Location: '.BASEURL.'/admin');
-                        // exit;
+                        header('Location: '.BASEURL.'/admin');
+                        exit;
                     } else {
                         echo "<script>
                                 alert('Berhasil login');
@@ -46,4 +42,12 @@ class Login extends Controller {
             header('Location: '.BASEURL);
         }
     }
+    // public function apiLogin(){
+    //     $data = [
+    //         'username' => "Username",
+    //         'password' => "Password",
+    //     ];
+
+    //     return json_encode($data);
+    // }
 }

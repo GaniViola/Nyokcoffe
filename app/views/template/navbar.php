@@ -15,7 +15,7 @@
           >
         </li>
         <li class="nav_item">
-          <a href="#" class="nav_link"
+          <a href="#about" class="nav_link"
             >About</a
           >
         </li>
