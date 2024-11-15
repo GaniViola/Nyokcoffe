@@ -10,18 +10,14 @@ class Produk_model {
     }
 
     public function getAlldataMinuman(){
-        $this->db->query('SELECT produk.id_produk,
-            produk.nama_produk, 
+        $this->db->query('SELECT produk.nama_produk, 
             kategori.nama_kategori, 
-            ukuran.nama_ukuran, 
-            produk.harga, 
-            produk.stok, 
-            produk.gambar, 
-            produk.created_at 
-            FROM produk 
-            INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori 
-            INNER JOIN produk_ukuran ON produk.id_produk = produk_ukuran.id_produk 
-            INNER JOIN ukuran ON produk_ukuran.id_ukuran = ukuran.id_ukuran');
+            ukuran_produk.nama_ukuran, 
+            produk.harga, produk.stok, 
+            produk.gambar, produk.created_at 
+        FROM ukuran_produk 
+        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk 
+        INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori');
         return $this->db->resultSet();
     }
 
