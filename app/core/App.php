@@ -25,10 +25,14 @@ class App {
         require_once '../app/controllers/'.$this->controller.'.php';
         $this->controller = new $this->controller;
 
-        if (isset($url[1])){
-            if (method_exists($this->controller, $url[1])){
+        if (isset($url[1])) {
+            // Pengecekan apakah method ada dan bersifat public
+            if (method_exists($this->controller, $url[1]) && is_callable([$this->controller, $url[1]])) {
                 $this->method = $url[1];
                 unset($url[1]);
+            } else {
+                // Jika method tidak public, redirect ke halaman error atau set method default
+                $this->method = 'index'; // Atau arahkan ke method lain sesuai kebutuhan
             }
         }
 
@@ -40,7 +44,6 @@ class App {
     }
     
     public function parseURL(){
-        
         if (isset($_GET['url'])){
             $url = rtrim($_GET['url'], '/');
             $url = filter_var($url, FILTER_SANITIZE_URL);

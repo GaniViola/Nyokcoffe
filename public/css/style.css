@@ -418,3 +418,80 @@ div a i {
     display: block; /* Atur display block atau inline sesuai kebutuhan */
   }
 }
+/* ========================== */
+/* About Section Styles */
+.about {
+  padding: 4rem 2rem; /* Jarak atas dan bawah */
+  background-color: var(--body-color); /* Warna latar belakang */
+  text-align: center; /* Teks di tengah */
+}
+
+.about_container {
+  display: flex;
+  flex-direction: column; /* Kolom untuk mobile */
+  align-items: center; /* Memusatkan horizontal */
+  max-width: 1200px; /* Membatasi lebar maksimum */
+  margin: 0 auto; /* Membuat container di tengah */
+}
+
+.about_data {
+  margin-bottom: 2rem; /* Jarak bawah */
+}
+
+.section-subtitle {
+  font-size: 1.2rem; /* Ukuran font subjudul */
+  color: var(--color-primary); /* Warna subjudul */
+  margin-bottom: 0.5rem; /* Jarak bawah */
+}
+
+.section-title {
+  font-size: 2rem; /* Ukuran font judul */
+  font-weight: var(--font-bold);
+  color: var(--title-color); /* Warna judul */
+  margin-bottom: 1rem; /* Jarak bawah */
+}
+
+.about_description {
+  font-size: 1rem; /* Ukuran font deskripsi */
+  color: var(--text-color); /* Warna teks */
+  margin-bottom: 1.5rem; /* Jarak bawah */
+}
+
+.about_img {
+  max-width: 100%; /* Lebar gambar maksimum */
+  height: auto; /* Tinggi otomatis sesuai aspek rasio */
+  border-radius: 2rem;
+}
+
+/* Responsive Styles for About */
+@media screen and (min-width: 769px) {
+  .about_container {
+    flex-direction: row; /* Menjadi baris untuk layar besar */
+    justify-content: space-between; /* Jarak antar elemen */
+  }
+
+  .about_data {
+    max-width: 50%; /* Lebar maksimum untuk teks */
+    text-align: left; /* Teks rata kiri */
+  }
+
+  .about_img {
+    max-width: 40%; /* Lebar gambar untuk layar besar */
+  }
+}
+/* Responsive Styles for About */
+@media screen and (min-width: 769px) {
+  .about_container {
+    flex-direction: row-reverse; /* Mengubah urutan untuk menempatkan gambar di kanan */
+    justify-content: space-between; /* Jarak antar elemen */
+  }
+
+  .about_data {
+    max-width: 50%; /* Lebar maksimum untuk teks */
+    text-align: left; /* Teks rata kiri */
+  }
+
+  .about_img {
+    max-width: 40%; /* Lebar gambar untuk layar besar */
+  }
+}

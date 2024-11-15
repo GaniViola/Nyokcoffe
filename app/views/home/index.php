@@ -11,3 +11,17 @@
         </div>
     </section>
 </main>
+<!-- ============================== -->
+ <!-- Tentang kami -->
+ <section class="about section bd-container" id="about">
+      <div class="about_container bd-grid">
+        <div class="about_data">
+          <span class="section-subtitle about_initial">About Us</span>
+          <h2 class="section-title about_initial">Story of Nyok Coffee</h2>
+          <p class="about_description">Nyok Coffee adalah sebuah coffee shop yang berdiri pada tahun 2018 oleh Noval Gustian, seorang pencinta kopi dari Bondowoso, Jawa Timur.</p>
+          <a href="#" class="button">Cari Tahu Lebih Lanjut</a>
+        </div>
+        <img src="<?= BASEURL; ?>/img/about.jpg" alt="Nyok Coffee" class="about_img">
+      </div>
+    </section>
+    <!-- Section Quality -->
