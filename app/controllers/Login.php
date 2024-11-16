@@ -21,15 +21,23 @@ class Login extends Controller {
                     setcookie('myKey', $result['id_user'], time() + 3600);
                     setcookie('key', hash('whirlpool', $result['username']), time() + 3600);
 
-                    // Kirim respons JSON berhasil login
-                    $response = [
-                        'status' => 'success',
-                        'message' => 'Berhasil login',
-                        'role' => $_SESSION['role'],
-                        'redirect_url' => $_SESSION['role'] === 'admin' ? BASEURL . '/admin' : BASEURL
-                    ];
-                    header('Content-Type: application/json');
-                    echo json_encode($response);
+                    // Cek apakah permintaan dari API atau web
+                    if (isset($_POST['is_api']) && $_POST['is_api'] == 'true') {
+                        // Kirim respons JSON untuk API
+                        $response = [
+                            'status' => 'success',
+                            'message' => 'Berhasil login',
+                            'role' => $_SESSION['role'],
+                            'redirect_url' => $_SESSION['role'] === 'admin' ? BASEURL . '/admin' : BASEURL
+                        ];
+                        header('Content-Type: application/json');
+                        echo json_encode($response);
+                    } else {
+                        // Redirect langsung untuk web
+                        $redirectUrl = $_SESSION['role'] === 'admin' ? BASEURL . '/admin' : BASEURL;
+                        header("Location: $redirectUrl");
+                        exit; // Hentikan eksekusi setelah redirect
+                    }
                 } else {
                     // Respons jika password tidak sesuai
                     $response = [
