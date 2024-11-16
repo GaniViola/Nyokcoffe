@@ -73,11 +73,7 @@
               <i class="fab fa-google mr-2"></i>Sign up with Google
             </button>
           </div>
-          <div class="mt-4">
-            <button class="w-full bg-white border border-gray-300 text-gray-700 py-2 rounded-lg flex items-center justify-center hover:bg-gray-100 transition duration-200">
-              <i class="fab fa-facebook-f mr-2"></i>Sign up with Facebook
-            </button>
-          </div>
+         
         </form>
       </div>
 
