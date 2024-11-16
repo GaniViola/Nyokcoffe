@@ -3,6 +3,7 @@
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3>Daftar Minuman</h3>
+                <?php Flasher::flashProduk(); ?>
             </div>
 
             <div class="d-flex justify-content-between mb-3">
@@ -42,11 +43,14 @@
                                 <td><?= htmlspecialchars($minuman['nama_ukuran']); ?></td>
                                 <td><?= number_format($minuman['stok']); ?></td>
                                 <td>Rp. <?= htmlspecialchars($minuman['harga']); ?></td>
-                                <td><?= htmlspecialchars($minuman['gambar']); ?></td>
+                                <td>
+                                    <img src="<?= BASEURL . '/uploads/' . $minuman['gambar']; ?>" alt="Gambar minuman" 
+                                    class="img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
+                                </td>
                                 <td><?= htmlspecialchars($minuman['created_at']); ?></td>
                                 <td>
                                     <button class="btn btn-warning btn-sm">Edit</button>
-                                    <button class="btn btn-danger btn-sm">Hapus</button>
+                                    <a href="<?= BASEURL; ?>/admin/hapusMinuman/<?= $minuman['id_produk']; ?>/<?= $minuman['nama_ukuran']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus makanan ini?');">Hapus</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -65,7 +69,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="<?= BASEURL; ?>/admin/inputDataMinuman" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="namaProduk" class="form-label">Nama Produk</label>
@@ -94,7 +98,7 @@
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Upload Gambar Produk</label>
-                <input class="form-control" type="file" id="formFile" name="gambar_produk">
+                <input class="form-control" type="file" id="formFile" name="gambar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>

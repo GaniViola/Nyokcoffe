@@ -72,6 +72,8 @@ class Admin extends Controller {
             $nama_produk = $_POST['nama_produk'];
             $harga = $_POST['harga'];
             $stok = $_POST['stok'];
+            $kategori = 2;
+            $location = '/admin/makanan';
     
             // Cek apakah produk dengan nama yang sama sudah ada
             if ($this->model('Produk_model')->cekProdukByNama($nama_produk) > 0) {
@@ -79,17 +81,8 @@ class Admin extends Controller {
                 Flasher::setFlashProduk('Data produk sudah ada', '', 'warning');
                 exit;
             } else {
-                // Upload gambar
-                $gambar = $this->upload();
-                if (!$gambar) {
-                    header('Location: '.BASEURL.'/admin/makanan');
-                    Flasher::setFlashProduk('Gagal menambahkan data', '', 'warning');
-                    exit;
-                }
-    
-                // Jika upload berhasil, lakukan proses simpan data produk ke database
-                $id_kategori = 2;
-                if ($this->model('Produk_model')->inputDataProduk($nama_produk, $harga, $id_kategori,  $gambar, $stok) > 0){
+                $gambar = $this->upload($location);
+                if ($this->model('Produk_model')->inputDataProduk($nama_produk, $harga, $kategori,  $gambar, $stok) > 0){
                     header('Location: '. BASEURL .'/admin/makanan');
                     Flasher::setFlashProduk('Data produk berhasil ditambahkan', '', 'success');
                     exit;
@@ -99,10 +92,22 @@ class Admin extends Controller {
                     exit;
                 }
             }
+        }else {
+            header('Location: '.BASEURL.'/admin');
+            exit;
         }
     }
 
-    public function hapusMakanan($id){
+    public function hapusMakanan($id = null){
+        if (empty($id)) {
+            header('Location: '. BASEURL .'/admin/makanan');
+            exit;
+        }
+        $gambar = $this->model('Produk_model')->getGambarProduk($id);
+        $filePath = '../public/uploads/' . $gambar['gambar'];
+        if (file_exists($filePath)) {
+            unlink($filePath); 
+        }
         if ($this->model('Produk_model')->deleteDataProduk($id) > 0){
             header('Location: '. BASEURL .'/admin/makanan');
             Flasher::setFlashProduk('Data produk berhasil didelete', '', 'success');
@@ -114,7 +119,41 @@ class Admin extends Controller {
         }
     }
     
-    private function upload(){
+    public function inputDataMinuman(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nama_produk = $_POST['nama_produk'];
+            $harga = $_POST['harga'];
+            $stok = $_POST['stok'];
+            $ukuran = $_POST['ukuran'];
+            $kategori = 1;
+            $location = '/admin/minuman';
+            
+            //cek produk pada database bynama dan ukuran
+            if ($this->model('Produk_model')->cekProdukByNamaAndUkuran($nama_produk, $ukuran) > 0) {
+                header('Location: '.BASEURL.'/admin/minuman');
+                Flasher::setFlashProduk('Data produk sudah ada', '', 'warning');
+                exit;
+            } else {
+                $gambar = $this->upload($location);
+                if ($this->model('Produk_model')->inputDataProduk($nama_produk, $harga, $kategori,  $gambar, $stok) > 0){
+                    $lastId = $this->model('Produk_model')->getLastId();
+                    if ($this->model('Produk_model')->inputUkuranProduk($lastId, $ukuran) > 0) {
+                        header('Location: '. BASEURL .'/admin/minuman');
+                        Flasher::setFlashProduk('Data produk berhasil ditambahkan', '', 'success');
+                        exit;
+                    }
+                    
+                }
+            }
+
+
+
+        } else {
+            Admin::Header('/admin/minuman');
+        }
+    }
+
+    private function upload($location){
         $namafile = $_FILES["gambar"]["name"];
         $ukuranfile = $_FILES["gambar"]["size"];
         $error = $_FILES["gambar"]["error"];
@@ -122,8 +161,9 @@ class Admin extends Controller {
     
         // Cek apakah tidak ada gambar yang di-upload
         if($error === 4){
+            Admin::Header($location);
             Flasher::setFlashProduk('Tidak ada file yang diunggah', '', 'danger');
-            return false;
+            exit;
         }
     
         // Validasi ekstensi file gambar
@@ -131,14 +171,14 @@ class Admin extends Controller {
         $ekstensiGambar = explode('.', $namafile);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         if(!in_array($ekstensiGambar, $ekstensigambarValid)){
-            header('Location: '.BASEURL.'/admin/makanan');
+            Admin::Header($location);
             Flasher::setFlashProduk('Ekstensi file tidak sesuai. Silakan pilih file JPG, JPEG, atau PNG.', '', 'danger');
             exit;
         }
     
         // Validasi ukuran file
         if($ukuranfile > 1000000){
-            header('Location: '.BASEURL.'/admin/makanan');
+            Admin::Header($location);
             Flasher::setFlashProduk('Ukuran file melebihi batas maksimum 1MB.', '', 'danger');
             exit;
         }
@@ -154,9 +194,37 @@ class Admin extends Controller {
         if (move_uploaded_file($tmpnama, $targetFile)) {
             return $namafileBaru;
         } else {
-            header('Location: '.BASEURL.'/admin/makanan');
+            Admin::Header($location);
             Flasher::setFlashProduk('Gagal meng-upload gambar. Silakan coba lagi.', '', 'danger');
             exit;
         }
+    }
+
+    public function hapusMinuman($id = null, $ukuran = null){
+        if (empty($id) || empty($ukuran)) {
+            header('Location: '. BASEURL .'/admin/minuman');
+            exit;
+        }
+        $gambar = $this->model('Produk_model')->getGambarProduk($id);
+        $idProdukUkuran = $this->model('Produk_model')->getIdProdukUkuran($id, $ukuran);
+        $idUkuran = $idProdukUkuran['id_ukuran'];
+        $filePath = '../public/uploads/' . $gambar['gambar'];
+        if (file_exists($filePath)) {
+            unlink($filePath); 
+        }
+        if ($this->model('Produk_model')->deleteDataMinnuman($idUkuran) > 0){
+            header('Location: '. BASEURL .'/admin/minuman');
+            Flasher::setFlashProduk('Data produk berhasil didelete', '', 'success');
+            exit;
+            
+        } else {
+            header('Location: '. BASEURL .'/admin/minuman');
+            Flasher::setFlashProduk('Data gagal didelete', '', 'warning');
+            exit;
+        }
+    }
+
+    public static function Header($location){
+        header('Location: '. BASEURL.$location);
     }
 }
