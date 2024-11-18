@@ -12,7 +12,7 @@
                     <input class="form-control me-2" type="search" placeholder="Cari Minuman" aria-label="Search" style="max-width: 250px;">
                 </form>
                 <!-- Tombol untuk menambah data -->
-                <button type="button" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#formModal">
+                <button type="button" class="btn btn-primary d-flex align-items-center tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal">
                     <i class="lni lni-plus me-2"></i> Tambah Minuman
                 </button>
             </div>
@@ -23,7 +23,7 @@
                     <thead class="table-light">
                         <tr>
                             <th style="background-color: #1d335f; color: white;">No</th>
-                            <th style="background-color: #1d335f; color: white;">Nama Makanan</th>
+                            <th style="background-color: #1d335f; color: white;">Nama Minuman</th>
                             <th style="background-color: #1d335f; color: white;">Kategori</th>
                             <th style="background-color: #1d335f; color: white;">Ukuran</th>
                             <th style="background-color: #1d335f; color: white;">Stok</th>
@@ -49,7 +49,7 @@
                                 </td>
                                 <td><?= htmlspecialchars($minuman['created_at']); ?></td>
                                 <td>
-                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                    <a href="<?= BASEURL; ?>/admin/editMinuman/<?= $minuman['id_produk']; ?>/<?= $minuman['nama_ukuran']; ?>" class="btn btn-warning btn-sm tampilModalUbah" data-bs-toggle="modal" data-bs-target="#formModal" data-id_produk="<?= $minuman['id_produk']; ?>" data-nama_ukuran="<?= $minuman['nama_ukuran']; ?>">Edit</a>
                                     <a href="<?= BASEURL; ?>/admin/hapusMinuman/<?= $minuman['id_produk']; ?>/<?= $minuman['nama_ukuran']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus makanan ini?');">Hapus</a>
                                 </td>
                             </tr>
@@ -61,17 +61,18 @@
     </div>
 </div>
 
-<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
+<div class="modal fade" id="formModal" tabindex="-1" aria-labelledby="formModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="judulModal">Tambah Data Minuman</h1>
+        <h1 class="modal-title fs-5" id="formModalLabel">Tambah Data Minuman</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form action="<?= BASEURL; ?>/admin/inputDataMinuman" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 mb-3">
+                    <input type="hidden" name="id_produk" id="IdMinuman">
                     <label for="namaProduk" class="form-label">Nama Produk</label>
                     <input type="text" class="form-control" id="namaProduk" name="nama_produk" required>
                 </div>
@@ -98,8 +99,13 @@
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Upload Gambar Produk</label>
+                <!-- Pratinjau Gambar Lama -->
+                <div class="mb-2">
+                    <img id="gambarLamaPreview" src="" alt="Gambar Lama" style="width: 100px; height: 100px; object-fit: cover; display: none;">
+                </div>
                 <input class="form-control" type="file" id="formFile" name="gambar">
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Tambah Data</button>

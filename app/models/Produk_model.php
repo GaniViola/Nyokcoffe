@@ -10,15 +10,19 @@ class Produk_model {
     }
 
     public function getAlldataMinuman(){
-        $this->db->query('SELECT produk.id_produk,
-            produk.nama_produk, 
-            kategori.nama_kategori, 
-            ukuran_produk.nama_ukuran, 
-            produk.harga, produk.stok, 
-            produk.gambar, produk.created_at 
-        FROM ukuran_produk 
-        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk 
-        INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori');
+        $query = 'SELECT produk.id_produk,
+            produk.nama_produk,
+            kategori.nama_kategori,
+            ukuran_produk.nama_ukuran,
+            produk.stok,
+            produk.harga,
+            produk.gambar,
+            produk.created_at
+        FROM ukuran_produk
+        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk
+        INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori';
+        
+        $this->db->query($query);
         return $this->db->resultSet();
     }
 
@@ -71,11 +75,11 @@ class Produk_model {
     }
 
     public function cekProdukByNamaAndUkuran ($nama_produk, $ukuran) {
-        $query = 'SELECT produk.nama_produk,
-                ukuran_produk.nama_ukuran
+        $query = 'SELECT produk.nama_produk, ukuran_produk.nama_ukuran
         FROM ukuran_produk
-        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk 
+        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk
         WHERE produk.nama_produk = :nama_produk AND ukuran_produk.nama_ukuran = :ukuran';
+
         $this->db->query($query);
 
         $this->db->bind('nama_produk', $nama_produk);
@@ -128,4 +132,84 @@ class Produk_model {
         $this->db->bind('id_produk', $id);
         return $this->db->single();
     }
+
+    public function getMinumanForEdit($idProduk, $namaUkuran){
+        $query = 'SELECT produk.id_produk,
+            produk.nama_produk,
+	        produk.harga,
+            produk.gambar,
+            produk.stok,
+            ukuran_produk.nama_ukuran
+        FROM ukuran_produk
+        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk
+        WHERE ukuran_produk.id_produk = :id_produk
+        AND
+        ukuran_produk.nama_ukuran = :nama_ukuran';
+
+        $this->db->query($query);
+        $this->db->bind('id_produk', $idProduk);
+        $this->db->bind('nama_ukuran', $namaUkuran);
+
+        $this->db->execute();
+        return $this->db->single();
+    }
+
+    public function getProdukById($id_produk){
+        $query = 'SELECT * FROM produk WHERE id_produk = :id_produk';
+        
+        $this->db->query($query);
+        $this->db->bind('id_produk', $id_produk);
+
+        $this->db->execute();
+        return $this->db->single();
+    }
+
+    public function getIdUkuranByIdAndUkuran($id_produk, $ukuran) {
+        $query = 'SELECT id_ukuran FROM ukuran_produk WHERE id_produk = :id_produk AND nama_ukuran = :nama_ukuran';
+        
+        $this->db->query($query);
+        $this->db->bind('id_produk', $id_produk);
+        $this->db->bind('nama_ukuran', $ukuran);
+        $this->db->execute();
+        return $this->db->single();
+    }
+
+    public function EditMinuman($id_produk, $nama_produk, $stok, $harga, $newGambar) {
+        $query = 'UPDATE produk
+            SET 
+                nama_produk = :nama_produk,
+                stok = :stok,
+                harga = :harga,
+                gambar = :gambar,
+                created_at = NOW()
+            WHERE id_produk = :id_produk';
+
+        $this->db->query($query);
+        $this->db->bind('nama_produk', $nama_produk);
+        $this->db->bind('stok', $stok);
+        $this->db->bind('harga', $harga);
+        $this->db->bind('gambar', $newGambar);
+        $this->db->bind('id_produk', $id_produk);
+
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function EditTanpaGmbar($id_produk, $nama_produk, $stok, $harga) {
+        $query = 'UPDATE produk
+            SET nama_produk = :nama_produk,
+                stok = :stok,
+                harga = :harga,
+                created_at = NOW()
+            WHERE id_produk = :id_produk';
+
+        $this->db->query($query);
+        $this->db->bind('nama_produk', $nama_produk);
+        $this->db->bind('stok', $stok);
+        $this->db->bind('harga', $harga);
+        $this->db->bind('id_produk', $id_produk);
+
+        $this->db->execute();
+        return $this->db->rowCount();
+    } 
 }
