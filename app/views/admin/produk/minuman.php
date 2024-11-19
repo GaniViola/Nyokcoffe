@@ -48,7 +48,7 @@
                                     <img src="<?= BASEURL . '/uploads/' . $minuman['gambar']; ?>" alt="Gambar minuman" 
                                     class="img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
                                 </td>
-                                <td><?= htmlspecialchars($minuman['created_at']); ?></td>
+                                <td><?= date('d M Y, H:i:s', strtotime($minuman['created_at'])); ?></td>
                                 <td>
                                     <a href="<?= BASEURL; ?>/admin/editMinuman/<?= $minuman['id_produk']; ?>/<?= $minuman['nama_ukuran']; ?>" class="btn btn-warning btn-sm tampilModalUbah" data-bs-toggle="modal" data-bs-target="#formModal" data-id_produk="<?= $minuman['id_produk']; ?>" data-nama_ukuran="<?= $minuman['nama_ukuran']; ?>">Edit</a>
                                     <a href="<?= BASEURL; ?>/admin/hapusMinuman/<?= $minuman['id_produk']; ?>/<?= $minuman['nama_ukuran']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus makanan ini?');">Hapus</a>

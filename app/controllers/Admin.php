@@ -106,16 +106,15 @@ class Admin extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_produk = $_POST['id_produk'];
             $nama_produk = $_POST['nama_produk'];
-            $ukuran = $_POST['ukuran'];
             $stok = $_POST['stok'];
             $harga = $_POST['harga'];
+            $getDataLama = $this->model('Produk_model')->getProdukById($id_produk);
+            $location = '/admin/minuman';
+            $gambarLama = $getDataLama['gambar'];
 
             if ($_FILES['gambar']['error'] !== 4) {
-                $getDataLama = $this->model('Produk_model')->getProdukById($id_produk);
-                $location = '/admin/minuman';
-                $newGambar = $this->uploadEdit($location, $getDataLama);
-
-                if ($this->model('Produk_model')->EditMinuman($id_produk, $nama_produk, $stok, $harga, $newGambar) > 0) {
+                $gambar = $this->uploadEdit($location, $getDataLama);
+                if ($this->model('Produk_model')->EditMinuman($id_produk, $nama_produk, $stok, $harga, $gambar) > 0) {
                     header('Location: '. BASEURL .'/admin/minuman');
                     Flasher::setFlashProduk('Data produk berhasil diEdit', '', 'success');
                     exit;
@@ -125,12 +124,49 @@ class Admin extends Controller {
                     exit;
                 }
             }else {
-                if ($this->model('Produk_model')->EditTanpaGmbar($id_produk, $nama_produk, $stok, $harga) > 0) {
+                if ($this->model('Produk_model')->EditMinuman($id_produk, $nama_produk, $stok, $harga, $gambarLama) > 0) {
                     header('Location: '. BASEURL .'/admin/minuman');
                     Flasher::setFlashProduk('Data produk berhasil diEdit', '', 'success');
                     exit;
                 }
             }
+        }else {
+            header('Location: '.BASEURL.'/admin/minuman');
+            exit;
+        }
+    }
+
+    public function EditMakanan(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_produk = $_POST['id_produk'];
+            $nama_produk = $_POST['nama_produk'];
+            $stok = $_POST['stok'];
+            $harga = $_POST['harga'];
+            $getDataLama = $this->model('Produk_model')->getProdukById($id_produk);
+            $location = '/admin/makanan';
+            $gambarLama = $getDataLama['gambar'];
+
+            if ($_FILES['gambar']['error'] !== 4) {
+                $gambar = $this->uploadEdit($location, $getDataLama);
+                if ($this->model('Produk_model')->EditMinuman($id_produk, $nama_produk, $stok, $harga, $gambar) > 0) {
+                    header('Location: '. BASEURL .'/admin/makanan');
+                    Flasher::setFlashProduk('Data produk berhasil diEdit', '', 'success');
+                    exit;
+                }else {
+                    header('Location: '. BASEURL .'/admin/makanan');
+                    Flasher::setFlashProduk('Data produk gagal diEdit', '', 'warning');
+                    exit;
+                }
+            }else {
+                if ($this->model('Produk_model')->EditMinuman($id_produk, $nama_produk, $stok, $harga, $gambarLama) > 0) {
+                    header('Location: '. BASEURL .'/admin/makanan');
+                    Flasher::setFlashProduk('Data produk berhasil diEdit', '', 'success');
+                    exit;
+                }
+            }
+        }else {
+            header('Location: '.BASEURL.'/admin/minuman');
+            exit;
         }
     }
 
@@ -234,6 +270,17 @@ class Admin extends Controller {
             Flasher::setFlashProduk('Data gagal didelete', '', 'warning');
             exit;
         }
+    }
+
+    public function getUbahMakanan (){
+        if (!isset($_POST['id_produkMakanan'])) {
+            header('Location: '.BASEURL.'/admin/minuman');
+            exit;
+        }
+
+        $idProduk = $_POST['id_produkMakanan'];
+
+        echo json_encode($this->model('Produk_model')->getProdukById($idProduk));
     }
 
     private function upload($location){

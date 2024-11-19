@@ -15,7 +15,7 @@
 
                 
                 <!-- Tombol untuk menambah data -->
-                <button type="button" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#formModal">
+                <button type="button" class="btn btn-primary d-flex align-items-center TambahMakanan" data-bs-toggle="modal" data-bs-target="#formModal">
                     <i class="lni lni-plus me-2"></i> Tambah Makanan
                 </button>
             </div>
@@ -43,14 +43,14 @@
                                 <td><?= htmlspecialchars($makanan['nama_produk']); ?></td>
                                 <td><?= htmlspecialchars($makanan['nama_kategori']); ?></td>
                                 <td><?= number_format($makanan['stok'], 0, ',', '.'); ?></td>
-                                <td>Rp. <?= number_format($makanan['harga'], 0, ',', '.'); ?></td>
+                                <td>Rp. <?= htmlspecialchars($makanan['harga']); ?></td>
                                 <td>
                                     <img src="<?= BASEURL . '/uploads/' . $makanan['gambar']; ?>" alt="Gambar Makanan" 
                                     class="img-fluid" style="width: 100px; height: 100px; object-fit: cover;">
                                 </td>
                                 <td><?= date('d M Y, H:i:s', strtotime($makanan['created_at'])); ?></td>
                                 <td>
-                                    <a href="<?= BASEURL; ?>/admin/editMakanan/<?= $makanan['id_produk']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                                    <a class="btn btn-warning btn-sm EditMakanan" data-bs-toggle="modal" data-bs-target="#formModal" data-id="<?= $makanan['id_produk']; ?>">Edit</a>
                                     <a href="<?= BASEURL; ?>/admin/hapusMakanan/<?= $makanan['id_produk']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus makanan ini?');">Hapus</a>
                                 </td>
                             </tr>
@@ -66,13 +66,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="judulModal">Tambah Data Makanan</h1>
+        <h1 class="modal-title fs-5" id="judulModalMakanan">Tambah Data Makanan</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form action="<?= BASEURL; ?>/admin/inputDataMakanan" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 mb-3">
+                    <input type="hidden" name="id_produk" id="IdMakanan">
                     <label for="namaProduk" class="form-label">Nama Produk</label>
                     <input type="text" class="form-control" id="namaProduk" name="nama_produk" required>
                 </div>
@@ -88,6 +89,10 @@
             </div>
             <div class="mb-3">
                 <label for="formFile" class="form-label">Upload Gambar Produk</label>
+                <!-- Pratinjau Gambar Lama -->
+                <div class="mb-2">
+                    <img id="gambarLamaPreview" src="" alt="Gambar Lama" style="width: 100px; height: 100px; object-fit: cover; display: none;">
+                </div>
                 <input class="form-control" type="file" id="formFile" name="gambar">
             </div>
             <div class="modal-footer">
