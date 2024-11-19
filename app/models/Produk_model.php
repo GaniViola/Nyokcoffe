@@ -174,7 +174,7 @@ class Produk_model {
         return $this->db->single();
     }
 
-    public function EditMinuman($id_produk, $nama_produk, $stok, $harga, $newGambar) {
+    public function EditMinuman($id_produk, $nama_produk, $stok, $harga, $gambar) {
         $query = 'UPDATE produk
             SET 
                 nama_produk = :nama_produk,
@@ -188,28 +188,11 @@ class Produk_model {
         $this->db->bind('nama_produk', $nama_produk);
         $this->db->bind('stok', $stok);
         $this->db->bind('harga', $harga);
-        $this->db->bind('gambar', $newGambar);
+        $this->db->bind('gambar', $gambar);
         $this->db->bind('id_produk', $id_produk);
 
         $this->db->execute();
         return $this->db->rowCount();
     }
 
-    public function EditTanpaGmbar($id_produk, $nama_produk, $stok, $harga) {
-        $query = 'UPDATE produk
-            SET nama_produk = :nama_produk,
-                stok = :stok,
-                harga = :harga,
-                created_at = NOW()
-            WHERE id_produk = :id_produk';
-
-        $this->db->query($query);
-        $this->db->bind('nama_produk', $nama_produk);
-        $this->db->bind('stok', $stok);
-        $this->db->bind('harga', $harga);
-        $this->db->bind('id_produk', $id_produk);
-
-        $this->db->execute();
-        return $this->db->rowCount();
-    } 
 }
