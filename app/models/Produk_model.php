@@ -25,7 +25,27 @@ class Produk_model {
         $this->db->query($query);
         return $this->db->resultSet();
     }
+    public function cariMakanan($nama_produk) {
+        $query = 'SELECT produk.id_produk, produk.nama_produk, kategori.nama_kategori, produk.harga, produk.stok, produk.gambar, produk.created_at
+                  FROM produk
+                  INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
+                  WHERE produk.nama_produk LIKE :nama_produk';
+        $this->db->query($query);
+        $this->db->bind('nama_produk', "%$nama_produk%"); // LIKE dengan wildcards
+        return $this->db->resultSet();
+    }
 
+    public function cariMinuman($nama_produk) {
+        $query = 'SELECT produk.id_produk, produk.nama_produk, kategori.nama_kategori, produk.harga, produk.stok, produk.gambar, produk.created_at, ukuran_produk.nama_ukuran
+                  FROM produk
+                  INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
+                  LEFT JOIN ukuran_produk ON produk.id_ukuran = ukuran_produk.id_ukuran
+                  WHERE produk.nama_produk LIKE :nama_produk';
+        
+        $this->db->query($query);
+        $this->db->bind('nama_produk', "%$nama_produk%"); // LIKE dengan wildcards
+        return $this->db->resultSet();
+    } 
     public function getAlldataMakanan(){
         $this->db->query("SELECT produk.id_produk, 
                                 produk.nama_produk, 

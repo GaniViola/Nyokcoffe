@@ -54,11 +54,11 @@
       </li>
     </ul>
     <div class="sidebar-footer">
-      <a href="<?= BASEURL; ?>/logout" class="sidebar-link">
+    <a href="<?= BASEURL; ?>/logout" class="sidebar-link">
         <i class="lni lni-exit"></i>
         <span>Logout</span>
-      </a>
-    </div>
+    </a>
+</div>
   </aside>
   <div class="main p-2">
     <nav class="navbar navbar-expand-lg navbar-light bg-white border shadow-sm rounded">
@@ -78,7 +78,7 @@
             <div class="dropdown">
               <a href="#" class="nav-link dropdown-toggle text-dark fw-bold" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false"><?= $_SESSION['EmailorUser']; ?></a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="<?= BASEURL ?>/admin/Profil">Profile</a></li>
                 <li><a class="dropdown-item" href="#">Settings</a></li>
                 <li><hr class="dropdown-divider" /></li>
                 <li><a class="dropdown-item" href="#">Logout</a></li>

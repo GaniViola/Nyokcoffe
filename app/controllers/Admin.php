@@ -143,6 +143,47 @@ class Admin extends Controller {
         $this->view('admin/template/footer');
     }
 
+    public function cariMakanan() {
+        if (isset($_POST['search'])) {
+            // Ambil kata kunci pencarian dari form input
+            $keyword = $_POST['keyword'];
+    
+            // Panggil model untuk mencari produk makanan berdasarkan keyword
+            $data['judul'] = 'Hasil Pencarian Makanan';
+            $data['produk'] = $this->model('Produk_model')->cariMakanan($keyword);
+    
+            // Tampilkan hasil pencarian
+            $this->view('admin/template/header', $data);
+            $this->view('admin/template/sidebar');
+            $this->view('admin/produk/makanan', $data);
+            $this->view('admin/template/footer');
+        } else {
+            // Jika tidak ada pencarian, tampilkan halaman produk makanan biasa
+            $this->makanan();
+        }
+    }
+
+    public function cariMinuman() {
+        if (isset($_POST['search'])) {
+            // Ambil kata kunci pencarian dari form input
+            $keyword = $_POST['keyword'];
+    
+            // Panggil model untuk mencari produk makanan berdasarkan keyword
+            $data['judul'] = 'Hasil Pencarian Mainuman';
+            $data['produk'] = $this->model('Produk_model')->cariMinuman($keyword);
+    
+            // Tampilkan hasil pencarian
+            $this->view('admin/template/header', $data);
+            $this->view('admin/template/sidebar');
+            $this->view('admin/produk/minuman', $data);
+            $this->view('admin/template/footer');
+        } else {
+            // Jika tidak ada pencarian, tampilkan halaman produk makanan biasa
+            $this->minuman();
+        }
+    }
+    
+    
     public function inputDataMakanan(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nama_produk = $_POST['nama_produk'];
@@ -290,4 +331,10 @@ class Admin extends Controller {
         header('Location: '. BASEURL.$location);
     }
 
+    public function Profil() {
+        $data['judul'] = 'Profil';
+        $this->view('admin/dropdownmenu/index', $data);
+       
+    }
 }
+

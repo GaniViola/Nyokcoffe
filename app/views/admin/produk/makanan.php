@@ -8,9 +8,11 @@
 
             <div class="d-flex justify-content-between mb-3">
                 <!-- Form pencarian -->
-                <form class="d-flex w-50">
-                    <input class="form-control me-2" type="search" placeholder="Cari Makanan" aria-label="Search" style="max-width: 250px;">
-                </form>
+                <form class="d-flex w-50" action="<?= BASEURL ?>/admin/cariMakanan" method="POST">
+    <input class="form-control me-2" type="search" placeholder="Cari Makanan" aria-label="Search" style="max-width: 250px;" name="keyword" required>
+    <button class="btn btn-outline-success" type="submit" name="search">Cari</button>
+</form>
+
                 
                 <!-- Tombol untuk menambah data -->
                 <button type="button" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#formModal">
