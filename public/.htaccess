@@ -1,6 +1,14 @@
 Options -Multiviews
 
 RewriteEngine On
+
+# Pengecualian untuk file tertentu, seperti ProdukApi.php
+RewriteCond %{REQUEST_URI} ^/controllers/ProdukApi.php$ [NC]
+RewriteRule ^ - [L]
+
+# Abaikan jika file atau folder ada
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+
+# Semua permintaan lainnya diarahkan ke index.php
 RewriteRule ^(.*)$ index.php?url=$1 [L]

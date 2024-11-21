@@ -9,22 +9,24 @@ class Produk_model {
         $this->db = new Database;
     }
 
-    public function getAlldataMinuman(){
+    public function getAlldataMinuman() {
         $query = 'SELECT produk.id_produk,
-            produk.nama_produk,
-            kategori.nama_kategori,
-            ukuran_produk.nama_ukuran,
-            produk.stok,
-            produk.harga,
-            produk.gambar,
-            produk.created_at
-        FROM ukuran_produk
-        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk
-        INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori';
+                          produk.nama_produk,
+                          kategori.nama_kategori,
+                          ukuran_produk.nama_ukuran,
+                          produk.stok,
+                          produk.harga,
+                          produk.gambar,
+                          produk.created_at
+                  FROM ukuran_produk
+                  INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk
+                  INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
+                  WHERE kategori.nama_kategori = "Minuman"'; // Pastikan ada filter kategori minuman
         
         $this->db->query($query);
         return $this->db->resultSet();
     }
+    
     public function cariMakanan($nama_produk) {
         $query = 'SELECT produk.id_produk, produk.nama_produk, kategori.nama_kategori, produk.harga, produk.stok, produk.gambar, produk.created_at
                   FROM produk
@@ -174,6 +176,32 @@ class Produk_model {
         return $this->db->single();
     }
 
+    public function getAllProduk($kategori = null) {
+        $query = 'SELECT produk.id_produk,
+                         produk.nama_produk,
+                         kategori.nama_kategori,
+                         ukuran_produk.nama_ukuran,
+                         produk.stok,
+                         produk.harga,
+                         produk.gambar,
+                         produk.created_at
+                  FROM produk
+                  LEFT JOIN kategori ON produk.id_kategori = kategori.id_kategori
+                  LEFT JOIN ukuran_produk ON produk.id_produk = ukuran_produk.id_produk';
+    
+        // Jika kategori diberikan, tambahkan kondisi WHERE
+        if (!empty($kategori) && $kategori != 'all') {
+            $query .= ' WHERE kategori.nama_kategori = :kategori';
+            $this->db->query($query);
+            $this->db->bind('kategori', $kategori);
+        } else {
+            // Jika tidak ada kategori atau kategori = 'all', ambil semua produk
+            $this->db->query($query);
+        }
+    
+        return $this->db->resultSet();
+    }    
+        
     public function getProdukById($id_produk){
         $query = 'SELECT * FROM produk WHERE id_produk = :id_produk';
         
@@ -214,5 +242,6 @@ class Produk_model {
         $this->db->execute();
         return $this->db->rowCount();
     }
+    
 
 }
