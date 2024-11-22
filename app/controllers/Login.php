@@ -43,7 +43,8 @@ class Login extends Controller {
                     }
                 } else {
                     // Password salah
-                    $this->jsonResponse('error', 'Login gagal, silakan cek kembali data Anda', [], 401);
+                    header("Location: ".BASEURL);
+                    // $this->jsonResponse('error', 'Login gagal, silakan cek kembali data Anda', [], 401);
                 }
             } else {
                 // Username/email tidak ditemukan

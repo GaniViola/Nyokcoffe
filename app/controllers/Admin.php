@@ -26,9 +26,17 @@ class Admin extends Controller {
         
     }
 
-    public function minuman() {
+    public function minuman($page = 1) {
+        $limit = 2; // Jumlah item per halaman
+        $offset = ($page - 1) * $limit;
+    
+        $model = $this->model('Produk_model');
+        $data['produk'] = $model->getProdukPagination($limit, $offset);
+        $data['total_pages'] = ceil($model->countProduk() / $limit);
+        $data['current_page'] = $page;
+        $data['limit'] = $limit;
+    
         $data['judul'] = 'Data Minuman';
-        $data['produk'] = $this->model('Produk_model')->getAlldataMinuman();
         $this->view('admin/template/header', $data);
         $this->view('admin/template/sidebar');
         $this->view('admin/produk/minuman', $data);
@@ -170,14 +178,32 @@ class Admin extends Controller {
         }
     }
 
-    public function makanan() {
+    public function makanan($page = 1) {
+        $limit = 2; // Jumlah item per halaman
+        $offset = ($page - 1) * $limit;
+    
+        $model = $this->model('Produk_model');
+        $data['produk'] = $model->getPaginatedMakanan($limit, $offset);
+        $data['total_pages'] = ceil($model->getTotalMakanan() / $limit);
+        $data['current_page'] = $page;
+        $data['limit'] = $limit;
+    
         $data['judul'] = 'Data Makanan';
-        $data['produk'] = $this->model('Produk_model')->getAlldataMakanan();
         $this->view('admin/template/header', $data);
         $this->view('admin/template/sidebar');
         $this->view('admin/produk/makanan', $data);
         $this->view('admin/template/footer');
     }
+    
+
+    // public function makanan() {
+    //     $data['judul'] = 'Data Makanan';
+    //     $data['produk'] = $this->model('Produk_model')->getAlldataMakanan();
+    //     $this->view('admin/template/header', $data);
+    //     $this->view('admin/template/sidebar');
+    //     $this->view('admin/produk/makanan', $data);
+    //     $this->view('admin/template/footer');
+    // }
 
     public function cariMakanan() {
         if (isset($_POST['search'])) {

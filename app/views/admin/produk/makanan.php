@@ -58,6 +58,23 @@
                     </tbody>
                 </table>
             </div>
+            <nav>
+                <ul class="pagination">
+                    <!-- Tombol Previous -->
+                    <li class="page-item <?= ($data['current_page'] == 1) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?= BASEURL; ?>/admin/makanan/<?= $data['current_page'] - 1; ?>">Previous</a>
+                    </li>
+                    <?php for ($i = 1; $i <= $data['total_pages']; $i++) : ?>
+                        <li class="page-item <?= ($i == $data['current_page']) ? 'active' : ''; ?>">
+                            <a class="page-link" href="<?= BASEURL; ?>/admin/minuman/<?= $i; ?>"><?= $i; ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    <!-- Tombol Next -->
+                    <li class="page-item <?= ($data['current_page'] == $data['total_pages']) ? 'disabled' : ''; ?>">
+                        <a class="page-link" href="<?= BASEURL; ?>/admin/minuman/<?= $data['current_page'] + 1; ?>">Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

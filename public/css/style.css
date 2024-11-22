@@ -499,111 +499,399 @@ div a i {
   body {
     background: #f5f5f5;
     margin-top: 20px;
-}
+  }
 
-.ui-w-80 {
-    width : 80px !important;
+  .ui-w-80 {
+    width: 80px !important;
     height: auto;
-}
+  }
 
-.btn-default {
+  .btn-default {
     border-color: rgba(24, 28, 33, 0.1);
-    background  : rgba(0, 0, 0, 0);
-    color       : #4E5155;
-}
+    background: rgba(0, 0, 0, 0);
+    color: #4e5155;
+  }
 
-label.btn {
+  label.btn {
     margin-bottom: 0;
-}
+  }
 
-.btn-outline-primary {
-    border-color: #26B4FF;
-    background  : transparent;
-    color       : #26B4FF;
-}
+  .btn-outline-primary {
+    border-color: #26b4ff;
+    background: transparent;
+    color: #26b4ff;
+  }
 
-.btn {
+  .btn {
     cursor: pointer;
-}
+  }
 
-.text-light {
+  .text-light {
     color: #babbbc !important;
-}
+  }
 
-.btn-facebook {
+  .btn-facebook {
     border-color: rgba(0, 0, 0, 0);
-    background  : #3B5998;
-    color       : #fff;
-}
+    background: #3b5998;
+    color: #fff;
+  }
 
-.btn-instagram {
+  .btn-instagram {
     border-color: rgba(0, 0, 0, 0);
-    background  : #000;
-    color       : #fff;
-}
+    background: #000;
+    color: #fff;
+  }
 
-.card {
+  .card {
     background-clip: padding-box;
-    box-shadow     : 0 1px 4px rgba(24, 28, 33, 0.012);
-}
+    box-shadow: 0 1px 4px rgba(24, 28, 33, 0.012);
+  }
 
-.row-bordered {
+  .row-bordered {
     overflow: hidden;
-}
+  }
 
-.account-settings-fileinput {
-    position  : absolute;
+  .account-settings-fileinput {
+    position: absolute;
     visibility: hidden;
-    width     : 1px;
-    height    : 1px;
-    opacity   : 0;
-}
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
 
-.account-settings-links .list-group-item.active {
+  .account-settings-links .list-group-item.active {
     font-weight: bold !important;
-}
+  }
 
-html:not(.dark-style) .account-settings-links .list-group-item.active {
+  html:not(.dark-style) .account-settings-links .list-group-item.active {
     background: transparent !important;
-}
+  }
 
-.account-settings-multiselect~.select2-container {
+  .account-settings-multiselect ~ .select2-container {
     width: 100% !important;
-}
+  }
 
-.light-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+  .light-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
-}
+  }
 
-.light-style .account-settings-links .list-group-item.active {
+  .light-style .account-settings-links .list-group-item.active {
     color: #4e5155 !important;
-}
+  }
 
-.material-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+  .material-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
-}
+  }
 
-.material-style .account-settings-links .list-group-item.active {
+  .material-style .account-settings-links .list-group-item.active {
     color: #4e5155 !important;
-}
+  }
 
-.dark-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+  .dark-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
     border-color: rgba(255, 255, 255, 0.03) !important;
-}
+  }
 
-.dark-style .account-settings-links .list-group-item.active {
+  .dark-style .account-settings-links .list-group-item.active {
     color: #fff !important;
-}
+  }
 
-.light-style .account-settings-links .list-group-item.active {
-    color: #4E5155 !important;
-}
+  .light-style .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+  }
 
-.light-style .account-settings-links .list-group-item {
-    padding     : 0.85rem 1.5rem;
+  .light-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
     border-color: rgba(24, 28, 33, 0.03) !important;
+  }
 }
+
+/* Quality Section Styles */
+.quality {
+  padding: 4rem 2rem; /* Jarak atas dan bawah */
+  background-color: var(--body-color); /* Warna latar belakang */
+  text-align: center; /* Teks di tengah */
+}
+
+.quality_container {
+  display: flex;
+  flex-direction: column; /* Kolom untuk mobile */
+  align-items: center; /* Memusatkan konten */
+  max-width: 1200px; /* Batas lebar maksimum */
+  margin: 0 auto; /* Membuat konten di tengah */
+}
+
+.quality_data {
+  margin-bottom: 2rem; /* Jarak bawah untuk teks */
+}
+
+.section-title {
+  font-size: 2rem; /* Ukuran font judul */
+  font-weight: var(--font-bold);
+  color: var(--title-color); /* Warna judul */
+  margin-bottom: 1rem; /* Jarak bawah */
+}
+
+.quality_description {
+  font-size: 1rem; /* Ukuran font deskripsi */
+  color: var(--text-color); /* Warna teks */
+  margin-bottom: 1.5rem; /* Jarak bawah */
+}
+
+.quality_list {
+  display: flex;
+  flex-direction: column; /* Kolom untuk mobile */
+  gap: 2rem; /* Jarak antar item */
+  list-style: none; /* Menghilangkan bullet point */
+  padding: 0; /* Menghilangkan padding */
+}
+
+.quality_item {
+  display: flex;
+  flex-direction: column; /* Menjadi kolom */
+  align-items: center; /* Memusatkan item */
+  text-align: center; /* Teks di tengah */
+}
+
+.quality_item .icon {
+  font-size: 2rem; /* Ukuran icon */
+  color: var(--color-primary); /* Warna icon */
+  margin-bottom: 1rem; /* Jarak bawah */
+}
+
+.quality_item h3 {
+  font-size: 1.5rem; /* Ukuran font subjudul */
+  font-weight: var(--font-medium);
+  color: var(--title-color); /* Warna subjudul */
+  margin-bottom: 0.5rem; /* Jarak bawah */
+}
+
+.quality_item p {
+  font-size: 1rem; /* Ukuran font deskripsi */
+  color: var(--text-color); /* Warna teks */
+}
+
+/* Quality Image */
+.quality_img {
+  max-width: 100%; /* Membuat gambar responsive */
+  height: auto; /* Tinggi otomatis */
+  margin-top: 2rem; /* Jarak atas */
+}
+
+.quality_img img {
+  max-width: 100%; /* Membatasi lebar gambar */
+  border-radius: 1rem; /* Membuat sudut gambar melengkung */
+}
+
+/* Responsive Styles for Quality Section */
+@media screen and (min-width: 769px) {
+  .quality_container {
+    flex-direction: row; /* Mengatur sebagai baris untuk layar besar */
+    justify-content: space-between; /* Jarak antar elemen */
+  }
+
+  .quality_data {
+    max-width: 50%; /* Lebar maksimal untuk teks */
+    text-align: left; /* Teks rata kiri */
+  }
+
+  .quality_list {
+    flex-direction: row; /* Membuat daftar item menjadi baris */
+    justify-content: space-between; /* Jarak antar item */
+    gap: 1rem; /* Jarak antar item lebih kecil */
+  }
+
+  .quality_img {
+    max-width: 40%; /* Lebar maksimal gambar untuk layar besar */
+  }
+}
+
+/* Styles untuk section products */
+.products {
+  padding: 4rem 2rem;
+  background-color: var(--body-color);
+  text-align: center; /* Agar teks judul dan subjudul rata tengah */
+}
+
+.products_container {
+  max-width: 1200px;
+  margin: 0 auto; /* Centering container */
+  display: flex;
+  flex-direction: column; /* Membuat elemen di dalam container berbaris ke bawah */
+  align-items: center; /* Semua elemen berada di tengah */
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: var(--font-bold);
+  color: var(--title-color);
+  margin-bottom: 0.5rem; /* Jarak bawah untuk judul */
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 2rem; /* Jarak bawah untuk subjudul */
+}
+
+.product_item {
+  background-color: var(--container-color);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Memberikan bayangan */
+  text-align: center; /* Agar teks produk rata tengah */
+  max-width: 300px; /* Lebar maksimum untuk item produk */
+  margin-bottom: 2rem; /* Jarak bawah antar produk */
+}
+
+.product_img {
+  width: 100%; /* Gambar penuh lebar container */
+  height: auto;
+  margin-bottom: 1rem; /* Jarak bawah gambar */
+}
+
+.product_name {
+  font-size: 1.5rem;
+  font-weight: var(--font-medium);
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.product_price {
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 1rem; /* Jarak bawah harga */
+}
+
+.product_size {
+  margin-bottom: 1rem; /* Jarak bawah dropdown ukuran */
+}
+
+.size_select {
+  padding: 0.5rem;
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.product_buttons {
+  display: flex;
+  justify-content: space-between; /* Menempatkan tombol di dua sisi */
+  gap: 1rem;
+}
+
+.product_button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product_button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Produk Section */
+.products {
+  padding: 4rem 2rem;
+  background-color: var(--body-color);
+}
+
+.products_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: var(--font-bold);
+  color: var(--title-color);
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  margin-bottom: 2rem;
+}
+
+.product_slider {
+  display: flex; /* Menampilkan produk secara horizontal */
+  justify-content: center; /* Memusatkan produk di tengah */
+  flex-wrap: wrap; /* Agar produk dapat membungkus saat tidak muat */
+}
+
+.product_item {
+  background: var(--container-color);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem; /* Jarak antar produk */
+  text-align: left;
+  width: 200px; /* Lebar tetap untuk setiap item produk */
+  flex-shrink: 0; /* Mencegah item untuk menyusut */
+  transition: transform 0.3s; /* Transisi untuk efek hover */
+}
+
+.product_item:hover {
+  transform: scale(1.05); /* Efek zoom saat hover */
+}
+
+.product_img {
+  width: 100%; /* Memastikan gambar mengikuti lebar item */
+  height: auto;
+  border-radius: 1rem;
+}
+
+.product_name {
+  font-size: 1.5rem;
+  font-weight: var(--font-bold);
+  margin: 0.5rem 0;
+}
+
+.product_price {
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  margin: 0.5rem 0;
+}
+
+.product_size {
+  margin: 1rem 0;
+}
+
+.product_buttons {
+  display: flex;
+  gap: 1rem; /* Jarak antar tombol */
+}
+
+.product_button {
+  padding: 0.5rem 1rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.product_button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .product_slider {
+    flex-direction: column; /* Mengubah menjadi kolom pada tampilan mobile */
+    align-items: center; /* Memusatkan produk secara horizontal */
+  }
+
+  .product_item {
+    width: 80%; /* Lebar lebih besar pada mobile */
+    margin: 1rem 0; /* Jarak vertikal pada mobile */
+  }
 }

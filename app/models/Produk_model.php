@@ -9,33 +9,91 @@ class Produk_model {
         $this->db = new Database;
     }
 
-    public function getAlldataMinuman() {
+    public function getAlldataMinuman(){
         $query = 'SELECT produk.id_produk,
-                          produk.nama_produk,
-                          kategori.nama_kategori,
-                          ukuran_produk.nama_ukuran,
-                          produk.stok,
-                          produk.harga,
-                          produk.gambar,
-                          produk.created_at
-                  FROM ukuran_produk
-                  INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk
-                  INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
-                  WHERE kategori.nama_kategori = "Minuman"'; // Pastikan ada filter kategori minuman
-        
+            produk.nama_produk,
+            kategori.nama_kategori,
+            ukuran_produk.nama_ukuran,
+            produk.stok,
+            produk.harga,
+            produk.gambar,
+            produk.created_at
+        FROM ukuran_produk
+        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk
+        INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori';
+
         $this->db->query($query);
+        return $this->db->resultSet();
+    }
+
+    public function getProdukPagination($limit, $offset) {
+        $this->db->query('SELECT produk.id_produk,
+            produk.nama_produk,
+            kategori.nama_kategori,
+            ukuran_produk.nama_ukuran,
+            produk.stok,
+            produk.harga,
+            produk.gambar,
+            produk.created_at
+        FROM ukuran_produk
+        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk
+        INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
+        WHERE kategori.nama_kategori = "Minuman"
+        LIMIT :limit OFFSET :offset');
+
+        $this->db->bind(':limit', $limit);
+        $this->db->bind(':offset', $offset);
+        return $this->db->resultSet();
+    }
+
+    public function countProduk() {
+    $query = "
+        SELECT COUNT(*) AS total
+        FROM ukuran_produk
+        INNER JOIN produk ON ukuran_produk.id_produk = produk.id_produk
+        INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
+        WHERE kategori.nama_kategori = 'Minuman'
+    ";
+    $this->db->query($query);
+    return $this->db->single()['total'];
+    }
+
+    public function getPaginatedMakanan($limit, $offset) {
+        $this->db->query("SELECT produk.id_produk, 
+            produk.nama_produk, 
+            kategori.nama_kategori, 
+            produk.harga, 
+            produk.stok, 
+            produk.gambar, 
+            produk.created_at
+        FROM produk
+        INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
+        WHERE kategori.nama_kategori = 'Makanan' LIMIT :limit OFFSET :offset");
+        $this->db->bind(':limit', $limit);
+        $this->db->bind(':offset', $offset);
+    
         return $this->db->resultSet();
     }
     
-    public function cariMakanan($nama_produk) {
-        $query = 'SELECT produk.id_produk, produk.nama_produk, kategori.nama_kategori, produk.harga, produk.stok, produk.gambar, produk.created_at
-                  FROM produk
-                  INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
-                  WHERE produk.nama_produk LIKE :nama_produk';
-        $this->db->query($query);
-        $this->db->bind('nama_produk', "%$nama_produk%"); // LIKE dengan wildcards
-        return $this->db->resultSet();
+    public function getTotalMakanan() {
+        $this->db->query("SELECT COUNT(*) as total 
+                          FROM produk 
+                          INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
+                          WHERE kategori.nama_kategori = 'Makanan'");
+
+        return $this->db->single()['total'];
     }
+    
+    
+    // public function cariMakanan($nama_produk) {
+    //     $query = 'SELECT produk.id_produk, produk.nama_produk, kategori.nama_kategori, produk.harga, produk.stok, produk.gambar, produk.created_at
+    //               FROM produk
+    //               INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
+    //               WHERE produk.nama_produk LIKE :nama_produk';
+    //     $this->db->query($query);
+    //     $this->db->bind('nama_produk', "%$nama_produk%");
+    //     return $this->db->resultSet();
+    // }
 
     public function cariMinuman($nama_produk) {
         $query = 'SELECT produk.id_produk, produk.nama_produk, kategori.nama_kategori, produk.harga, produk.stok, produk.gambar, produk.created_at, ukuran_produk.nama_ukuran
@@ -45,7 +103,7 @@ class Produk_model {
                   WHERE produk.nama_produk LIKE :nama_produk';
         
         $this->db->query($query);
-        $this->db->bind('nama_produk', "%$nama_produk%"); // LIKE dengan wildcards
+        $this->db->bind('nama_produk', "%$nama_produk%"); 
         return $this->db->resultSet();
     } 
     public function getAlldataMakanan(){

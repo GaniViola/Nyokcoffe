@@ -26,9 +26,10 @@ class Home extends Controller {
 
         // Menyiapkan data untuk tampilan
         $data['judul'] = 'Home';
+        $data['produk'] = $this->model('Produk_model')->getAlldataMinuman();
         $this->view('template/header', $data);
         $this->view('template/navbar');
-        $this->view('home/index');
+        $this->view('home/index', $data);
         $this->view('template/footer');
     }
 
