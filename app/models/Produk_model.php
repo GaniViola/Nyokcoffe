@@ -83,17 +83,6 @@ class Produk_model {
 
         return $this->db->single()['total'];
     }
-    
-    
-    // public function cariMakanan($nama_produk) {
-    //     $query = 'SELECT produk.id_produk, produk.nama_produk, kategori.nama_kategori, produk.harga, produk.stok, produk.gambar, produk.created_at
-    //               FROM produk
-    //               INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
-    //               WHERE produk.nama_produk LIKE :nama_produk';
-    //     $this->db->query($query);
-    //     $this->db->bind('nama_produk', "%$nama_produk%");
-    //     return $this->db->resultSet();
-    // }
 
     public function cariMinuman($nama_produk) {
         $query = 'SELECT produk.id_produk, produk.nama_produk, kategori.nama_kategori, produk.harga, produk.stok, produk.gambar, produk.created_at, ukuran_produk.nama_ukuran

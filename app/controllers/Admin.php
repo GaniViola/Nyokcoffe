@@ -196,15 +196,6 @@ class Admin extends Controller {
     }
     
 
-    // public function makanan() {
-    //     $data['judul'] = 'Data Makanan';
-    //     $data['produk'] = $this->model('Produk_model')->getAlldataMakanan();
-    //     $this->view('admin/template/header', $data);
-    //     $this->view('admin/template/sidebar');
-    //     $this->view('admin/produk/makanan', $data);
-    //     $this->view('admin/template/footer');
-    // }
-
     public function cariMakanan() {
         if (isset($_POST['search'])) {
             // Ambil kata kunci pencarian dari form input

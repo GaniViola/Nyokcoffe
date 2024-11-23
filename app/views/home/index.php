@@ -1,32 +1,3 @@
-<?php
-$products = [
-    [
-        'name' => 'Kopi Arabika',
-        'price' => 'Rp 50.000',
-        'img' => 'img/homeimg.png',
-        'sizes' => ['Small', 'Medium', 'Large'],
-    ],
-    [
-        'name' => 'Kopi Robusta',
-        'price' => 'Rp 45.000',
-        'img' => 'img/homeimg.png',
-        'sizes' => ['Small', 'Medium', 'Large'],
-    ],
-    [
-        'name' => 'Kopi Luwak',
-        'price' => 'Rp 100.000',
-        'img' => 'img/homeimg.png',
-        'sizes' => ['Small', 'Medium', 'Large'],
-    ],
-    [
-        'name' => 'Kopi Gayo',
-        'price' => 'Rp 60.000',
-        'img' => 'img/homeimg.png',
-        'sizes' => ['Small', 'Medium', 'Large'],
-    ]
-];
-?>
-
 <!-- Home -->
 <main class="l-main">
     <section class="home">
@@ -112,6 +83,6 @@ $products = [
         </div>
       <?php endforeach; ?>
     </div>
-    <a href="#" class="button">Show all →</a>
+    <a href="allproduk" class="button">Show all →</a>
   </div>
 </section>

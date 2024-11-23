@@ -895,3 +895,95 @@ div a i {
     margin: 1rem 0; /* Jarak vertikal pada mobile */
   }
 }
+.product-container {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 kolom */
+  gap: 15px; /* Kurangi jarak antar card */
+  padding: 20px;
+  justify-items: center;
+}
+
+/* Gaya dasar untuk card */
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  width: 200px;
+  text-align: left;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Gambar produk */
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Nama produk */
+.product-name {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #333;
+}
+
+/* Ukuran produk */
+.product-size {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+/* Harga produk */
+.product-price {
+  font-size: 16px;
+  color: var(--color-primary);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Tombol aksi */
+.product-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Tombol Beli Sekarang */
+.product-actions .buy-now {
+  text-decoration: none;
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.product-actions .buy-now:hover {
+  background-color: #218838;
+}
+
+/* Tombol Tambahkan ke Keranjang */
+.product-actions .add-to-cart {
+  text-decoration: none;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.product-actions .add-to-cart:hover {
+  background-color: #0056b3;
+}
