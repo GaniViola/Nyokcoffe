@@ -13,15 +13,124 @@
 </main>
 <!-- ============================== -->
  <!-- Tentang kami -->
- <section class="about section bd-container" id="about">
-      <div class="about_container bd-grid">
-        <div class="about_data">
-          <span class="section-subtitle about_initial">About Us</span>
-          <h2 class="section-title about_initial">Story of Nyok Coffee</h2>
-          <p class="about_description">Nyok Coffee adalah sebuah coffee shop yang berdiri pada tahun 2018 oleh Noval Gustian, seorang pencinta kopi dari Bondowoso, Jawa Timur.</p>
-          <a href="#" class="button">Cari Tahu Lebih Lanjut</a>
+ <section id="hero">
+      <div class="wrap">
+        <div class="text">
+          <h2 class="sec-title">NyokCoffee</h2>
+          <p class="desc">
+            Where the warmth of a rural ambiance meets premium coffee flavors,
+            offering an authentic and delightful coffee experience.
+          </p>
         </div>
-        <img src="<?= BASEURL; ?>/img/about.jpg" alt="Nyok Coffee" class="about_img">
+      </div>
+    </section>
+
+    <section id="motto">
+      <div class="wrap">
+        <div>
+          <h3>
+            We believe in creating a welcoming space where every cup of coffee
+            brings people together and fosters a sense of community.
+          </h3>
+          <p>Farhan Maulana, Director of KopiPos</p>
+        </div>
+        <div>
+          <img src="<?= BASEURL; ?>/img/Owner.jpg"  alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section id="offers">
+      <div class="wrap">
+        <h3>We offers a cozy and welcoming space, perfect for students.</h3>
+        <p>
+          Enjoy our comfortable seating, free Wi-Fi, and a quiet atmosphere
+          ideal for studying, meeting friends, or taking a break with a
+          delicious cup of coffee.
+        </p>
+      </div>
+    </section>
+
+    <section id="testimonial">
+      <div class="wrap">
+        <h2 class="sec-title">What They Say About Us</h2>
+        <div class="slider">
+          <button class="prev">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <div class="slider-wrapper">
+            <div class="slide">
+              <div class="card">
+                <p>
+                  ‟Absolutely love this place! The coffee is rich and flavorful,
+                  and the cozy atmosphere is perfect for unwinding. Friendly
+                  staff too - highly recommended!”
+                </p>
+                <h5>Farhan Maulana</h5>
+              </div>
+              <div class="card">
+                <p>
+                  ‟This café has become my go-to spot. Expertly crafted drinks
+                  and an inviting ambiance make it a delightful experience every
+                  time.”
+                </p>
+                <h5>Abi Qhafari</h5>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <p>
+                  ‟As a coffee connoisseur, I'm thrilled with the outstanding
+                  selection of premium blends here. The cozy setting and
+                  welcoming staff keep me coming back.”
+                </p>
+                <h5>Muhammad Hamdani</h5>
+              </div>
+              <div class="card">
+                <p>
+                  ‟Stepping into this café is like finding an oasis of calm. The
+                  exceptional coffee and inviting vibe make it the perfect spot
+                  to unwind.”
+                </p>
+                <h5>MD. Adhyaksa</h5>
+              </div>
+            </div>
+            <div class="slide">
+              <div class="card">
+                <p>
+                  ‟Love the cozy vibe and amazing coffee at Tani Kopi! A perfect
+                  spot to unwind after a long day.”
+                </p>
+                <h5>Abdi Gunawan</h5>
+              </div>
+              <div class="card">
+                <p>
+                  ‟A hidden gem! Tani Kopi offers the perfect blend of comfort
+                  and quality. Highly recommend.”
+                </p>
+                <h5>MD. Agus</h5>
+              </div>
+            </div>
+          </div>
+          <button class="next">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="map">
+      <div class="wrap">
+        <h2 class="sec-title">Find Us on Maps</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.875774784615!2d113.81134647368451!3d-7.908043992115143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6dd5d5b282879%3A0x8236e086c2ac0724!2sNyok%20Cafe!5e0!3m2!1sen!2sid!4v1732458385683!5m2!1sen!2sid" 
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
       </div>
     </section>
     <!-- Section Quality -->
@@ -86,3 +195,30 @@
     <a href="allproduk" class="button">Show all →</a>
   </div>
 </section>
+
+<main>
+      <div class="wrap">
+        
+        <h2 class="title">Contact Us</h2>
+        
+        <div class="contact">
+          <div class="form">
+            <div class="name">
+              <label>Name</label>
+              <input placeholder="Your name"/>
+            </div>
+            <div class="email">
+              <label>Email</label>
+              <input placeholder="example@mail.com"/>
+            </div>
+            <div class="msg">
+              <label>Messages</label>
+              <textarea placeholder="Use your wise word here..."></textarea>
+            </div>
+            <button class="submit">Send <i class="fas fa-paper-plane"></i></button>
+          </div>
+          <div class="img"></div>
+        </div>
+
+      </div>
+    </main>

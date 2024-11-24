@@ -5,11 +5,26 @@
 :root {
   --header-height: 4rem;
   --color-primary: #2e4471;
+  --primary: #8a6a4e;
   --color-primary-dark: #1d335f;
   --title-color: #393939;
   --text-color: #707070;
   --body-color: #f8f9fa; /* Warna latar belakang */
   --container-color: #fff;
+  --secondary: #f0f0f0;
+  --tertiary: #bebebe;
+  --max-width: 1100px;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+  --text-9xl: 8rem;
 
   /* Font */
   --body-font: "Poppins", sans-serif;
@@ -897,10 +912,11 @@ div a i {
 }
 .product-container {
   margin-top: 70px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 kolom */
-  gap: 15px; /* Kurangi jarak antar card */
-  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;/* 5 kolom */
+  gap: 4px; /* Kurangi jarak antar card */
+  padding: 0px;
   justify-items: center;
 }
 
@@ -908,13 +924,15 @@ div a i {
 .product-card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 15px;
+  padding: 10px; /* Menurunkan padding card */
   width: 200px;
   text-align: left;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   font-family: Arial, sans-serif;
+  margin: 4px; /* Mengurangi margin antar card */
 }
+
 
 /* Gambar produk */
 .product-image {
@@ -951,7 +969,7 @@ div a i {
 .product-actions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px; /* Mengurangi jarak antar tombol */
 }
 
 /* Tombol Beli Sekarang */
@@ -986,4 +1004,179 @@ div a i {
 
 .product-actions .add-to-cart:hover {
   background-color: #0056b3;
+}
+
+/* footer */
+
+/* General Footer Styles */
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 60px 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer_section {
+  flex: 1;
+  margin: 0 20px;
+  min-width: 250px;
+  max-width: 300px;
+  text-align: left;
+}
+
+.footer_logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.footer_logo-img {
+  width: 60px;
+  margin-right: 15px;
+  border-radius: 50%;
+}
+
+.footer_logo-text {
+  color: #ecf0f1;
+}
+
+.footer_logo-name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.footer_logo-slogan {
+  font-size: 1.1rem;
+  color: #bdc3c7;
+}
+
+.footer_description {
+  color: #bdc3c7;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.footer_title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #ecf0f1;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* Navigasi Links */
+.footer_links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer_link {
+  display: block;
+  font-size: 1.1rem;
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.footer_link:hover {
+  color: #f39c12;
+}
+
+.footer_nav-icon {
+  margin-right: 8px;
+}
+
+/* Hubungi Kami */
+.footer_contact {
+  list-style: none;
+  padding: 0;
+}
+
+.footer_contact li {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #bdc3c7;
+  margin-bottom: 10px;
+}
+
+.footer_contact-link {
+  color: #f39c12;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer_contact-link:hover {
+  color: #ecf0f1;
+}
+
+.footer_icon {
+  font-size: 1.5rem;
+  color: #f39c12;
+  margin-right: 10px;
+}
+
+/* Ikuti Kami */
+.footer_social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  font-size: 1.8rem;
+  color: white;
+  background-color: #34495e;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #f39c12;
+  transform: scale(1.1);
+}
+
+.social-icon.facebook {
+  background-color: #3b5998;
+}
+
+.social-icon.instagram {
+  background-color: #e4405f;
+}
+
+.social-icon.twitter {
+  background-color: #1da1f2;
+}
+
+.social-icon.youtube {
+  background-color: #ff0000;
+}
+
+/* Hak Cipta */
+.footer_bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1rem;
+  color: #bdc3c7;
+}
+
+.footer_copy {
+  font-size: 1rem;
+  color: #bdc3c7;
+  margin: 0;
 }

@@ -4,6 +4,7 @@ class allProduk extends Controller{
     public function index(){
         $data['judul'] = 'Home';
         $data['minuman'] = $this->model('Produk_model')->getAlldataMinuman();
+        $data['makanan'] = $this->model('Produk_model')->getAlldataMakanan();
         $this->view('template/header', $data);
         $this->view('template/navbar');
         $this->view('produk/index', $data);

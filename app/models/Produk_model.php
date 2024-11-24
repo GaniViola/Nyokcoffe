@@ -289,6 +289,25 @@ class Produk_model {
         $this->db->execute();
         return $this->db->rowCount();
     }
+
+    public function cariMakanan($nama_produk) {
+    $query = 'SELECT produk.id_produk, 
+                     produk.nama_produk, 
+                     kategori.nama_kategori, 
+                     produk.harga, 
+                     produk.stok, 
+                     produk.gambar, 
+                     produk.created_at
+              FROM produk
+              INNER JOIN kategori ON produk.id_kategori = kategori.id_kategori
+              WHERE produk.nama_produk LIKE :nama_produk
+              AND kategori.nama_kategori = "Makanan"';
+    
+    $this->db->query($query);
+    $this->db->bind('nama_produk', "%$nama_produk%"); 
+    return $this->db->resultSet();
+}
+
     
 
 }
