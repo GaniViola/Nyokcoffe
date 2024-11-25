@@ -69,16 +69,10 @@
         <div class="product_item">
           <img src="<?= BASEURL . '/uploads/' . $p['gambar']; ?>" alt="<?= $p['nama_produk']; ?>" class="product_img">
           <h3 class="product_name"><?= $p['nama_produk']; ?></h3>
-          <span class="product_price">Rp.<?= $p['harga']; ?></span>
-          <div class="product_size">
-            <label for="size_select_<?= $p['nama_produk']; ?>">Ukuran:</label>
-            <select id="size_select_<?php echo $p['nama_produk']; ?>" class="size_select">
-                <option value="<?= $p['nama_ukuran']; ?>"><?= $p['nama_ukuran']; ?></option>
-            </select>
-          </div>
+          <span class="product_price"><?= $p['nama_ukuran']; ?></span><br>
+          <span class="product_price">Rp <?= number_format($p['harga'], 2, ',', '.'); ?></span><br><br>
           <div class="product_buttons">
-            <button class="product_button">Beli</button>
-            <button class="product_button">Tambah ke Keranjang</button>
+            <button class="product_button">Add to Cart</button>
           </div>
         </div>
       <?php endforeach; ?>
