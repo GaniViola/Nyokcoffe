@@ -36,10 +36,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no = 1; ?>
-                        <?php foreach ($data['produk'] as $makanan) : ?>
+                        <?php 
+                        $start_no = ($data['current_page'] - 1) * $data['limit'];
+                        ?>
+                        <?php foreach ($data['produk'] as $index => $makanan) : ?>
                             <tr>
-                                <td><?= $no++; ?></td>
+                                <td><?= $start_no + $index + 1; ?></td>
                                 <td><?= htmlspecialchars($makanan['nama_produk']); ?></td>
                                 <td><?= htmlspecialchars($makanan['nama_kategori']); ?></td>
                                 <td><?= number_format($makanan['stok'], 0, ',', '.'); ?></td>
@@ -66,12 +68,12 @@
                     </li>
                     <?php for ($i = 1; $i <= $data['total_pages']; $i++) : ?>
                         <li class="page-item <?= ($i == $data['current_page']) ? 'active' : ''; ?>">
-                            <a class="page-link" href="<?= BASEURL; ?>/admin/minuman/<?= $i; ?>"><?= $i; ?></a>
+                            <a class="page-link" href="<?= BASEURL; ?>/admin/makanan/<?= $i; ?>"><?= $i; ?></a>
                         </li>
                     <?php endfor; ?>
                     <!-- Tombol Next -->
                     <li class="page-item <?= ($data['current_page'] == $data['total_pages']) ? 'disabled' : ''; ?>">
-                        <a class="page-link" href="<?= BASEURL; ?>/admin/minuman/<?= $data['current_page'] + 1; ?>">Next</a>
+                        <a class="page-link" href="<?= BASEURL; ?>/admin/makanan/<?= $data['current_page'] + 1; ?>">Next</a>
                     </li>
                 </ul>
             </nav>
