@@ -52,5 +52,7 @@
   <!-- Hak Cipta -->
   <div class="footer_bottom">
     <p class="footer_copy">&copy; <?= date('Y'); ?> Nyok Coffee. Semua hak dilindungi.</p>
+    <script src="<?= BASEURL; ?>/js/script.js"></script>
   </div>
 </footer>
+</body>

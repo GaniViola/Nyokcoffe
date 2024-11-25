@@ -910,13 +910,14 @@ div a i {
     margin: 1rem 0; /* Jarak vertikal pada mobile */
   }
 }
+
+/* daftar Produk */
 .product-container {
   margin-top: 70px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;/* 5 kolom */
-  gap: 4px; /* Kurangi jarak antar card */
-  padding: 0px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 kolom */
+  gap: 15px; /* Kurangi jarak antar card */
+  padding: 20px;
   justify-items: center;
 }
 
@@ -924,7 +925,7 @@ div a i {
 .product-card {
   border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 10px; /* Menurunkan padding card */
+  padding: 15px;
   width: 200px;
   text-align: left;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
@@ -936,25 +937,26 @@ div a i {
 
 /* Gambar produk */
 .product-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  width: 100%; /* Mengatur gambar agar menyesuaikan lebar card */
+  height: 200px; /* Menetapkan tinggi gambar */
+  object-fit: cover; /* Menyesuaikan konten gambar agar tidak terdistorsi */
+  border-top-left-radius: 10px; /* Menambahkan border-radius agar terlihat lebih lembut di atas */
+  border-top-right-radius: 10px;
 }
 
 /* Nama produk */
 .product-name {
   font-size: 18px;
   font-weight: bold;
-  margin: 10px 0;
+  margin: 0 10px;
   color: #333;
 }
 
 /* Ukuran produk */
 .product-size {
-  font-size: 14px;
+  font-size: 16px;
   color: #777;
-  margin-bottom: 5px;
+  margin: 10px;
 }
 
 /* Harga produk */
@@ -962,37 +964,21 @@ div a i {
   font-size: 16px;
   color: var(--color-primary);
   font-weight: bold;
-  margin-bottom: 15px;
+  margin: 10px;
 }
 
 /* Tombol aksi */
 .product-actions {
+  margin: 10px;
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Mengurangi jarak antar tombol */
-}
-
-/* Tombol Beli Sekarang */
-.product-actions .buy-now {
-  text-decoration: none;
-  background-color: #28a745;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
-
-.product-actions .buy-now:hover {
-  background-color: #218838;
+  gap: 10px;
 }
 
 /* Tombol Tambahkan ke Keranjang */
 .product-actions .add-to-cart {
   text-decoration: none;
-  background-color: #007bff;
+  background-color: var(--color-primary);
   color: #fff;
   padding: 10px;
   border-radius: 5px;
@@ -1000,10 +986,11 @@ div a i {
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s ease;
+  margin-bottom: 10px;
 }
 
 .product-actions .add-to-cart:hover {
-  background-color: #0056b3;
+  background-color: var(--color-primary-dark);
 }
 
 /* footer */
