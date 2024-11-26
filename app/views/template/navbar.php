@@ -35,7 +35,7 @@
       <?php Flasher::Login(); ?>
     <!-- Added class "nav_user" -->
     <a href=""><i class='bx bx-heart'></i></a>
-    <a href=""><i class="bx bx-shopping-bag"></i></a>
+    <a href="javascript:void(0)" id="cart-btn" class="cart-icon"><i class="bx bx-shopping-bag"></i></a>
 </div>
   </nav>
 </header>
@@ -57,4 +57,107 @@
       <a href="">Lupa kata sandi?</a>
     </form>
   </div>
+</div>
+
+<!-- keranjang -->
+<div id="cart-modal" class="cart-modal">
+    <div class="cart-modal-header">
+        <h2>Keranjang Belanja</h2>
+        <button class="close-btn" id="close-cart">&times;</button>
+    </div>
+    <div class="cart-modal-content" id="cart-content">
+        <!-- Contoh item -->
+        <div class="cart-item" data-price="100000">
+            <img src="https://via.placeholder.com/60" alt="Produk">
+            <div class="item-info">
+                <p>Nama Produk</p>
+                <p>Rp 100.000</p>
+            </div>
+            <div class="quantity-controls">
+                <button class="btn-decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="btn-increase">+</button>
+            </div>
+        </div>
+        <div class="cart-item" data-price="100000">
+            <img src="https://via.placeholder.com/60" alt="Produk">
+            <div class="item-info">
+                <p>Nama Produk</p>
+                <p>Rp 100.000</p>
+            </div>
+            <div class="quantity-controls">
+                <button class="btn-decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="btn-increase">+</button>
+            </div>
+        </div>
+        <div class="cart-item" data-price="100000">
+            <img src="https://via.placeholder.com/60" alt="Produk">
+            <div class="item-info">
+                <p>Nama Produk</p>
+                <p>Rp 100.000</p>
+            </div>
+            <div class="quantity-controls">
+                <button class="btn-decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="btn-increase">+</button>
+            </div>
+        </div>
+        <div class="cart-item" data-price="100000">
+            <img src="https://via.placeholder.com/60" alt="Produk">
+            <div class="item-info">
+                <p>Nama Produk</p>
+                <p>Rp 100.000</p>
+            </div>
+            <div class="quantity-controls">
+                <button class="btn-decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="btn-increase">+</button>
+            </div>
+        </div>
+        <div class="cart-item" data-price="100000">
+            <img src="https://via.placeholder.com/60" alt="Produk">
+            <div class="item-info">
+                <p>Nama Produk</p>
+                <p>Rp 100.000</p>
+            </div>
+            <div class="quantity-controls">
+                <button class="btn-decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="btn-increase">+</button>
+            </div>
+        </div>
+        <div class="cart-item" data-price="100000">
+            <img src="https://via.placeholder.com/60" alt="Produk">
+            <div class="item-info">
+                <p>Nama Produk</p>
+                <p>Rp 100.000</p>
+            </div>
+            <div class="quantity-controls">
+                <button class="btn-decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="btn-increase">+</button>
+            </div>
+        </div>
+        <div class="cart-item" data-price="100000">
+            <img src="https://via.placeholder.com/60" alt="Produk">
+            <div class="item-info">
+                <p>Nama Produk</p>
+                <p>Rp 100.000</p>
+            </div>
+            <div class="quantity-controls">
+                <button class="btn-decrease">-</button>
+                <span class="quantity">1</span>
+                <button class="btn-increase">+</button>
+            </div>
+        </div>
+        <!-- Tambahkan item lain di sini -->
+    </div>
+    <div class="cart-modal-footer">
+        <div class="total">
+            <span>Total: </span>
+            <span id="total-price">Rp 100.000</span>
+        </div>
+        <button class="checkout-btn">Checkout</button>
+    </div>
 </div>
