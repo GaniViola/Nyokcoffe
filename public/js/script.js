@@ -50,4 +50,32 @@ const showMenu = (toggleId, navId) => {
         loginModal.style.display = "none";
       }
     });
+   
+    // Tangkap semua tautan kategori
+    const categoryLinks = document.querySelectorAll('.category-link');
+    const productCards = document.querySelectorAll('.product-card');
+
+    // Tambahkan event listener untuk setiap tautan
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // Mencegah reload halaman
+            const category = link.getAttribute('data-category');
+
+            // Atur kelas "active" pada link yang diklik
+            categoryLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+
+            // Tampilkan/hilangkan produk berdasarkan kategori
+            productCards.forEach(card => {
+                if (category === 'all' || card.classList.contains(category)) {
+                    card.style.display = 'block'; // Tampilkan kartu
+                } else {
+                    card.style.display = 'none'; // Sembunyikan kartu
+                }
+            });
+        });
+    });
   });
+
+  //viewallproduk
+  

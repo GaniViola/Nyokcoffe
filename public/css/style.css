@@ -911,17 +911,35 @@ div a i {
   }
 }
 
+/*all produk */
+main {
+  padding-top: var(--header-height); /* Gunakan tinggi navbar */
+}
+
+.wrap {
+  padding-top: calc(var(--header-height)); /* Tambahkan ekstra ruang jika diperlukan */
+}
+
+
+h2.title {
+  margin: 40px 0;
+  text-align: center;
+  font-size: 30px;
+}
+
 /* daftar Produk */
 .product-container {
   margin-top: 70px;
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* 5 kolom */
-  gap: 15px; /* Kurangi jarak antar card */
+  gap: 10px; /* Jarak antar card */
   padding: 20px;
-  justify-items: center;
+  justify-content: start; /* Rata kiri tanpa ruang besar antar card */
+  justify-items: start; /* Card dalam kolom rata kiri */
 }
 
 /* Gaya dasar untuk card */
+/* Efek Hover pada Card Produk */
 .product-card {
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -931,11 +949,36 @@ div a i {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   font-family: Arial, sans-serif;
-  margin: 4px; /* Mengurangi margin antar card */
+  margin: 0; /* Mengandalkan jarak dari gap grid */
+  transition: all 0.3s ease-in-out; /* Transisi untuk smooth effect */
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .product-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom untuk layar sedang */
+  }
 }
 
+@media (max-width: 480px) {
+  .product-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk layar kecil */
+  }
+}
 
-/* Gambar produk */
+/* Efek Hover untuk produk card */
+.product-card:hover {
+  transform: scale(1.05); /* Membesarkan sedikit card */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Menambah shadow saat hover */
+}
+
+/* Efek Klik pada Card Produk */
+.product-card:active {
+  transform: scale(0.98); /* Membuat card sedikit mengecil saat diklik */
+  background-color: #f0f0f0; /* Menambahkan warna latar belakang saat diklik */
+}
+
+/* Gaya dasar untuk gambar produk */
 .product-image {
   width: 100%; /* Mengatur gambar agar menyesuaikan lebar card */
   height: 200px; /* Menetapkan tinggi gambar */
@@ -990,8 +1033,91 @@ div a i {
 }
 
 .product-actions .add-to-cart:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-primary-dark); /* Warna lebih gelap saat hover */
+  cursor: pointer;
+  transform: scale(1.1); /* Membesarkan sedikit tombol saat hover */
 }
+
+.product-actions .add-to-cart:active {
+  background-color: var(--color-primary-dark); /* Warna tetap saat diklik */
+  transform: scale(0.95); /* Tombol mengecil saat diklik */
+  transition: all 0.1s ease;
+}
+
+/* Tombol Buy Now */
+.product-actions .buy-now {
+  text-decoration: none;
+  background-color: #ccc;
+  color: #333;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.product-actions .buy-now:hover {
+  background-color: #bbb;
+}
+/*view all kategori
+/* Gaya untuk Navigasi Kategori */
+.menu-categories {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.category-link {
+  text-decoration: none;
+  color: #333; /* Warna teks default */
+  font-weight: bold;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: color 0.3s, border-bottom 0.3s;
+  border-bottom: 2px solid transparent; /* Garis bawah default (tidak terlihat) */
+}
+
+.category-link:hover {
+  color: #007BFF; /* Warna teks saat di-hover */
+  border-bottom: 2px solid #007BFF; /* Garis bawah saat di-hover */
+}
+
+/* Gaya untuk Tautan Aktif */
+.category-link.active {
+  color: #007BFF; /* Warna teks aktif */
+  border-bottom: 2px solid #007BFF; /* Garis bawah aktif */
+}
+
+/* Gaya untuk Kontainer Produk */
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.product-card {
+  flex: 1 1 calc(5% - 20px);
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.hidden {
+  display: none;
+}
+
+
+
 
 /* footer */
 
