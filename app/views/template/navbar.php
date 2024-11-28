@@ -78,78 +78,9 @@
                 <span class="quantity">1</span>
                 <button class="btn-increase">+</button>
             </div>
-        </div>
-        <div class="cart-item" data-price="100000">
-            <img src="https://via.placeholder.com/60" alt="Produk">
-            <div class="item-info">
-                <p>Nama Produk</p>
-                <p>Rp 100.000</p>
-            </div>
-            <div class="quantity-controls">
-                <button class="btn-decrease">-</button>
-                <span class="quantity">1</span>
-                <button class="btn-increase">+</button>
-            </div>
-        </div>
-        <div class="cart-item" data-price="100000">
-            <img src="https://via.placeholder.com/60" alt="Produk">
-            <div class="item-info">
-                <p>Nama Produk</p>
-                <p>Rp 100.000</p>
-            </div>
-            <div class="quantity-controls">
-                <button class="btn-decrease">-</button>
-                <span class="quantity">1</span>
-                <button class="btn-increase">+</button>
-            </div>
-        </div>
-        <div class="cart-item" data-price="100000">
-            <img src="https://via.placeholder.com/60" alt="Produk">
-            <div class="item-info">
-                <p>Nama Produk</p>
-                <p>Rp 100.000</p>
-            </div>
-            <div class="quantity-controls">
-                <button class="btn-decrease">-</button>
-                <span class="quantity">1</span>
-                <button class="btn-increase">+</button>
-            </div>
-        </div>
-        <div class="cart-item" data-price="100000">
-            <img src="https://via.placeholder.com/60" alt="Produk">
-            <div class="item-info">
-                <p>Nama Produk</p>
-                <p>Rp 100.000</p>
-            </div>
-            <div class="quantity-controls">
-                <button class="btn-decrease">-</button>
-                <span class="quantity">1</span>
-                <button class="btn-increase">+</button>
-            </div>
-        </div>
-        <div class="cart-item" data-price="100000">
-            <img src="https://via.placeholder.com/60" alt="Produk">
-            <div class="item-info">
-                <p>Nama Produk</p>
-                <p>Rp 100.000</p>
-            </div>
-            <div class="quantity-controls">
-                <button class="btn-decrease">-</button>
-                <span class="quantity">1</span>
-                <button class="btn-increase">+</button>
-            </div>
-        </div>
-        <div class="cart-item" data-price="100000">
-            <img src="https://via.placeholder.com/60" alt="Produk">
-            <div class="item-info">
-                <p>Nama Produk</p>
-                <p>Rp 100.000</p>
-            </div>
-            <div class="quantity-controls">
-                <button class="btn-decrease">-</button>
-                <span class="quantity">1</span>
-                <button class="btn-increase">+</button>
-            </div>
+            <a href="#" class="btn-remove">
+                <i class="fa fa-trash"></i> <!-- Ikon hapus -->
+            </a>
         </div>
         <!-- Tambahkan item lain di sini -->
     </div>
@@ -158,6 +89,6 @@
             <span>Total: </span>
             <span id="total-price">Rp 100.000</span>
         </div>
-        <button class="checkout-btn">Checkout</button>
+        <a href="#" class="checkout-btn">Checkout</a>
     </div>
 </div>

@@ -106,3 +106,59 @@ document.addEventListener("DOMContentLoaded", function () {
   // Kalkulasi total saat pertama kali
   calculateTotal();
 });
+
+// Tangkap semua tautan kategori
+const categoryLinks = document.querySelectorAll(".category-link");
+const productCards = document.querySelectorAll(".product-card");
+
+// Tambahkan event listener untuk setiap tautan
+categoryLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    e.preventDefault(); // Mencegah reload halaman
+    const category = link.getAttribute("data-category");
+
+    // Atur kelas "active" pada link yang diklik
+    categoryLinks.forEach((l) => l.classList.remove("active"));
+    link.classList.add("active");
+
+    // Tampilkan/hilangkan produk berdasarkan kategori
+    productCards.forEach((card) => {
+      if (category === "all" || card.classList.contains(category)) {
+        card.style.display = "block"; // Tampilkan kartu
+      } else {
+        card.style.display = "none"; // Sembunyikan kartu
+      }
+    });
+  });
+});
+
+// menambahkan produk ke keranjang belanja
+$(".product-button").on("click", function () {
+  // Ambil ID produk dari atribut data-id_produkAll
+  console.log("ok");
+  const id_allDataProduk = $(this).data("idProduk");
+  console.log(id_allDataProduk);
+
+  // Validasi jika ID produk tersedia
+  if (!id_allDataProduk) {
+    alert("ID Produk tidak ditemukan!");
+    return;
+  }
+
+  // Kirim data ke server dengan AJAX
+  // $.ajax({
+  //   url: "/path/to/add_to_cart.php", // Ganti dengan endpoint Anda
+  //   method: "POST",
+  //   data: { id_produk: id_allDataProduk },
+  //   success: function (response) {
+  //     // Tampilkan pesan sukses
+  //     alert("Produk berhasil ditambahkan ke keranjang!");
+  //     console.log(response); // Debug response server
+  //   },
+  //   error: function (xhr, status, error) {
+  //     // Tampilkan pesan error
+  //     alert("Gagal menambahkan produk ke keranjang.");
+  //     console.error(error); // Debug error
+  //   },
+  // });
+});

@@ -165,7 +165,7 @@
           <span class="product_price"><?= $p['nama_ukuran']; ?></span><br>
           <span class="product_price">Rp <?= number_format($p['harga'], 2, ',', '.'); ?></span><br><br>
           <div class="product_buttons">
-            <button class="product_button">Add to Cart</button>
+            <a href="#" class="product-button" data-idProduk="<?= $p['id_produk']; ?>">Add to-cart</a>
           </div>
         </div>
       <?php endforeach; ?>

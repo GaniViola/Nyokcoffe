@@ -12,6 +12,8 @@
     <title><?= $data['judul']; ?></title>
     <script src="<?= BASEURL; ?>/js/about-us.js?v=<?php echo time(); ?>" defer></script>
     <script src="<?= BASEURL; ?>/js/contact-us.js?v=<?php echo time(); ?>" defer></script>
+    <script src="<?= BASEURL; ?>/js/script.js?v=<?php echo time(); ?>" defer></script>
+    
 </head>
 <body>
 
