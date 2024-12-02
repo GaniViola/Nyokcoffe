@@ -60,34 +60,19 @@
 </div>
 
 <!-- keranjang -->
+
 <div id="cart-modal" class="cart-modal">
     <div class="cart-modal-header">
         <h2>Keranjang Belanja</h2>
         <button class="close-btn" id="close-cart">&times;</button>
     </div>
-    <div class="cart-modal-content" id="cart-content">
-        <!-- Contoh item -->
-        <div class="cart-item" data-price="100000">
-            <img src="https://via.placeholder.com/60" alt="Produk">
-            <div class="item-info">
-                <p>Nama Produk</p>
-                <p>Rp 100.000</p>
-            </div>
-            <div class="quantity-controls">
-                <button class="btn-decrease">-</button>
-                <span class="quantity">1</span>
-                <button class="btn-increase">+</button>
-            </div>
-            <a href="#" class="btn-remove">
-                <i class="fa fa-trash"></i> <!-- Ikon hapus -->
-            </a>
-        </div>
-        <!-- Tambahkan item lain di sini -->
+    <div class="cart-modal-content" id="cart">
+        <!-- Produk ditambahkan di sini secara dinamis -->
     </div>
     <div class="cart-modal-footer">
         <div class="total">
             <span>Total: </span>
-            <span id="total-price">Rp 100.000</span>
+            <span id="total-price">Rp 0</span>
         </div>
         <a href="#" class="checkout-btn">Checkout</a>
     </div>

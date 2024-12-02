@@ -52,8 +52,8 @@
   <!-- Hak Cipta -->
   <div class="footer_bottom">
     <p class="footer_copy">&copy; <?= date('Y'); ?> Nyok Coffee. Semua hak dilindungi.</p>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="<?= BASEURL; ?>/js/script.js"></script>
   </div>
 </footer>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="<?= BASEURL; ?>/js/script.js"></script>
 </body>

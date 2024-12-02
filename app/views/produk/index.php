@@ -26,7 +26,7 @@
             <?php endif; ?>
 
             <div class="produk-actions">
-                <a href="<?= $produk['id_produk']; ?>" class="produk-cart">Add to Cart</a>
+                <a href="#" class="produk-cart" data-id_Produk="<?= $produk['id_produk']; ?>">Add to Cart</a>
             </div>
         </div>
         <?php endforeach; ?>

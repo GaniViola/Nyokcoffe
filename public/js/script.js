@@ -133,32 +133,62 @@ categoryLinks.forEach((link) => {
 });
 
 // menambahkan produk ke keranjang belanja
-$(".product-button").on("click", function () {
-  // Ambil ID produk dari atribut data-id_produkAll
-  console.log("ok");
-  const id_allDataProduk = $(this).data("idProduk");
-  console.log(id_allDataProduk);
+$(document).ready(function () {
+  $(".produk-cart").on("click", function (e) {
+    e.preventDefault(); // Hindari reload halaman
+    const idProduk = $(this).data("id_produk");
+    // Kirim data ke server dengan AJAX
+    $.ajax({
+      url: "http://localhost/Nyokcoffe/public/shoppingCart",
+      method: "POST",
+      data: { id_produk: idProduk },
 
-  // Validasi jika ID produk tersedia
-  if (!id_allDataProduk) {
-    alert("ID Produk tidak ditemukan!");
-    return;
+      success: function (respons) {
+        // Parsing respons JSON
+        const data = JSON.parse(respons);
+        console.log(data.produk);
+        if (data.success === true) {
+          // Tambahkan produk ke modal keranjang belanja
+          const cartContent = $("#cart");
+          const newItem = `
+          <div class="cart-item" data-id="${
+            data.produk.id_produk
+          }" data-price="${data.produk.harga}">
+            <img src="${data.produk.gambar}" alt="${
+            data.produk.nama_produk
+          }" width="60">
+            <div class="item-info">
+              <p>${data.produk.nama_produk}</p>
+              <p>Rp ${Number(data.produk.harga).toLocaleString("id-ID")}</p>
+            </div>
+            <div class="quantity-controls">
+              <button class="btn-decrease">-</button>
+              <span class="quantity">${data.produk.quantity}</span>
+              <button class="btn-increase">+</button>
+            </div>
+            <a href="#" class="btn-remove">
+              <i class="fa fa-trash"></i>
+            </a>
+          </div>
+        `;
+          cartContent.append(newItem);
+
+          // Update total harga
+          updateTotal();
+        } else {
+          alert(data.message);
+        }
+      },
+    });
+  });
+
+  function updateTotal() {
+    let total = 0;
+    $(".cart-item").each(function () {
+      const price = parseInt($(this).data("price"), 10);
+      const quantity = parseInt($(this).find(".quantity").text(), 10);
+      total += price * quantity;
+    });
+    $("#total-price").text(`Rp ${total.toLocaleString("id-ID")}`);
   }
-
-  // Kirim data ke server dengan AJAX
-  // $.ajax({
-  //   url: "/path/to/add_to_cart.php", // Ganti dengan endpoint Anda
-  //   method: "POST",
-  //   data: { id_produk: id_allDataProduk },
-  //   success: function (response) {
-  //     // Tampilkan pesan sukses
-  //     alert("Produk berhasil ditambahkan ke keranjang!");
-  //     console.log(response); // Debug response server
-  //   },
-  //   error: function (xhr, status, error) {
-  //     // Tampilkan pesan error
-  //     alert("Gagal menambahkan produk ke keranjang.");
-  //     console.error(error); // Debug error
-  //   },
-  // });
 });
