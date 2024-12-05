@@ -135,52 +135,137 @@ categoryLinks.forEach((link) => {
 // menambahkan produk ke keranjang belanja
 $(document).ready(function () {
   $(".produk-cart").on("click", function (e) {
-    e.preventDefault(); // Hindari reload halaman
+    e.preventDefault();
     const idProduk = $(this).data("id_produk");
-    // Kirim data ke server dengan AJAX
+
     $.ajax({
       url: "http://localhost/Nyokcoffe/public/shoppingCart",
       method: "POST",
       data: { id_produk: idProduk },
-
       success: function (respons) {
-        // Parsing respons JSON
-        const data = JSON.parse(respons);
-        console.log(data.produk);
-        if (data.success === true) {
-          // Tambahkan produk ke modal keranjang belanja
-          const cartContent = $("#cart");
-          const newItem = `
-          <div class="cart-item" data-id="${
-            data.produk.id_produk
-          }" data-price="${data.produk.harga}">
-            <img src="${data.produk.gambar}" alt="${
-            data.produk.nama_produk
-          }" width="60">
-            <div class="item-info">
-              <p>${data.produk.nama_produk}</p>
-              <p>Rp ${Number(data.produk.harga).toLocaleString("id-ID")}</p>
-            </div>
-            <div class="quantity-controls">
-              <button class="btn-decrease">-</button>
-              <span class="quantity">${data.produk.quantity}</span>
-              <button class="btn-increase">+</button>
-            </div>
-            <a href="#" class="btn-remove">
-              <i class="fa fa-trash"></i>
-            </a>
-          </div>
-        `;
-          cartContent.append(newItem);
+        try {
+          const data = JSON.parse(respons);
+          if (data.success === true) {
+            const cartContent = $("#cart");
+            const existingItem = cartContent.find(
+              `.cart-item[data-id="${data.produk.id_produk}"]`
+            );
 
-          // Update total harga
+            if (existingItem.length) {
+              const quantityEl = existingItem.find(".quantity");
+              const newQuantity = parseInt(quantityEl.text(), 10) + 1;
+              quantityEl.text(newQuantity);
+            } else {
+              const newItem = `
+                <div class="cart-item" data-id="${
+                  data.produk.id_produk
+                }" data-price="${data.produk.harga}">
+                  <img src="${data.produk.gambar}" alt="${
+                data.produk.nama_produk
+              }" width="60">
+                  <div class="item-info">
+                    <p>${data.produk.nama_produk}</p>
+                    <p>Rp ${Number(data.produk.harga).toLocaleString(
+                      "id-ID"
+                    )}</p>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease">-</button>
+                    <span class="quantity">${data.produk.quantity}</span>
+                    <button class="btn-increase">+</button>
+                  </div>
+                  <a href="#" class="btn-remove">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </div>`;
+              cartContent.append(newItem);
+            }
+
+            updateTotal();
+          } else {
+            alert(data.message);
+          }
+        } catch (error) {
+          console.error("Error parsing response:", error);
+        }
+      },
+      error: function () {
+        alert("Terjadi kesalahan saat menghubungi server.");
+      },
+    });
+  });
+
+  // Event untuk tombol - (decrease quantity)
+  $(document).on("click", ".btn-decrease", function () {
+    const cartItem = $(this).closest(".cart-item");
+    const idProduk = cartItem.data("id");
+    const quantityEl = cartItem.find(".quantity");
+    let quantity = parseInt(quantityEl.text(), 10);
+
+    if (quantity > 1) {
+      quantity--;
+      updateQuantity(idProduk, quantity, quantityEl);
+    } else {
+      alert("Quantity tidak boleh kurang dari 1.");
+    }
+  });
+
+  // Event untuk tombol + (increase quantity)
+  $(document).on("click", ".btn-increase", function () {
+    const cartItem = $(this).closest(".cart-item");
+    const idProduk = cartItem.data("id");
+    const quantityEl = cartItem.find(".quantity");
+    let quantity = parseInt(quantityEl.text(), 10);
+
+    quantity++;
+    updateQuantity(idProduk, quantity, quantityEl);
+  });
+
+  // Event untuk tombol hapus
+  $(document).on("click", ".btn-remove", function (e) {
+    e.preventDefault();
+    const cartItem = $(this).closest(".cart-item");
+    const idProduk = cartItem.data("id");
+
+    $.ajax({
+      url: "http://localhost/Nyokcoffe/public/shoppingCart/deleteCartItem",
+      method: "POST",
+      data: { id_produk: idProduk },
+      success: function (respons) {
+        // console.log(data);
+        const data = JSON.parse(respons);
+        if (data.success) {
+          cartItem.remove(); // Hapus elemen dari tampilan
+          updateTotal(); // Perbarui total harga
+        } else {
+          alert(data.message);
+        }
+      },
+      error: function () {
+        alert("Gagal menghapus item dari keranjang.");
+      },
+    });
+  });
+
+  function updateQuantity(idProduk, quantity, quantityEl) {
+    $.ajax({
+      url: "http://localhost/Nyokcoffe/public/shoppingCart/updateCartQuantity",
+      method: "POST",
+      data: { id_produk: idProduk, quantity: quantity },
+      success: function (respons) {
+        const data = JSON.parse(respons);
+        if (data.success) {
+          quantityEl.text(quantity);
           updateTotal();
         } else {
           alert(data.message);
         }
       },
+      error: function () {
+        alert("Gagal memperbarui quantity.");
+      },
     });
-  });
+  }
 
   function updateTotal() {
     let total = 0;

@@ -73,6 +73,22 @@ class ProdukUser_model{
         return $this->db->rowCount();
     }
 
+    public function cekDataItemsByIdProduk($cartId, $id_produk) {
+        $query = 'SELECT produk.*,
+            tbl_cart.*,
+            tbl_cart_items.*
+        FROM tbl_cart_items
+        INNER JOIN produk ON tbl_cart_items.id_produk = produk.id_produk
+        INNER JOIN tbl_cart ON tbl_cart_items.id_cart = tbl_cart.id_cart
+        WHERE tbl_cart_items.id_cart = :id_cart AND tbl_cart_items.id_produk = :id_produk';
+        $this->db->query($query);
+
+        $this->db->bind('id_cart', $cartId);
+        $this->db->bind('id_produk', $id_produk);
+        $this->db->execute();
+        return $this->db->single();
+    }
+
     public function allDataCartItems() {
         $query = 'SELECT produk.*,
             tbl_cart.*,
@@ -88,5 +104,62 @@ class ProdukUser_model{
         $this->db->execute();
         return $this->db->single();
     }
+
+    public function allDataCartItemsUpdate() {
+        $query = 'SELECT produk.*,
+            tbl_cart.*,
+            tbl_cart_items.*
+        FROM tbl_cart_items
+        INNER JOIN produk ON tbl_cart_items.id_produk = produk.id_produk
+        INNER JOIN tbl_cart ON tbl_cart_items.id_cart = tbl_cart.id_cart
+        ORDER BY tbl_cart_items.id_cart_item';
+
+        $this->db->query($query);
+        
+        $this->db->execute();
+        return $this->db->single();
+    }
+
+    public function getIdItem($id_cart, $idProduk) {
+        $query = 'SELECT id_cart_item 
+            FROM tbl_cart_items 
+            WHERE id_cart = :id_cart AND id_produk = :id_produk';
+
+        $this->db->query($query);
+        $this->db->bind('id_cart', $id_cart);
+        $this->db->bind('id_produk', $idProduk);
+        $this->db->execute();
+        return $this->db->single();
+    }
+
+    public function UpdateDtaItems($itemsId, $quantity){
+        $query = 'UPDATE tbl_cart_items SET 
+            quantity = :quantity WHERE id_cart_item = :id_cart_item';
+        $this->db->query($query);
+        $this->db->bind('quantity', $quantity);
+        $this->db->bind('id_cart_item', $itemsId);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function updateCartItemQuantity($id_cart_item, $quantity) {
+        $this->db->query('UPDATE tbl_cart_items 
+            SET quantity = :quantity 
+            WHERE id_cart_item = :id_cart_item');
+        $this->db->bind(':quantity', $quantity);
+        $this->db->bind(':id_cart_item', $id_cart_item);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function deletItemById($id_cart_item){
+        $query = 'DELETE FROM tbl_cart_items 
+            WHERE id_cart_item = :id_cart_item';
+        $this->db->query($query);
+        $this->db->bind('id_cart_item', $id_cart_item);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+    
 
 }
