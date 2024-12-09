@@ -161,5 +161,17 @@ class ProdukUser_model{
         return $this->db->rowCount();
     }
     
+    public function getCartItems ($id_cart) {
+        $query = 'SELECT produk.*,
+	        tbl_cart_items.*
+        FROM tbl_cart_items
+        INNER JOIN produk ON tbl_cart_items.id_produk = produk.id_produk
+        WHERE tbl_cart_items.id_cart = :id_cart';
+
+        $this->db->query($query);
+        $this->db->bind('id_cart', $id_cart);
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
 
 }

@@ -132,8 +132,56 @@ categoryLinks.forEach((link) => {
   });
 });
 
-// menambahkan produk ke keranjang belanja
 $(document).ready(function () {
+  // Fungsi untuk memuat item keranjang dari server saat halaman dimuat
+  function loadCartItems() {
+    $.ajax({
+      url: "http://localhost/Nyokcoffe/public/shoppingCart/getCartItems",
+      method: "GET",
+      success: function (respons) {
+        try {
+          const data = JSON.parse(respons);
+          if (data.success) {
+            const cartContent = $("#cart");
+            cartContent.empty(); // Bersihkan isi keranjang sebelumnya
+            data.cartItems.forEach((item) => {
+              const newItem = `
+                <div class="cart-item" data-id="${
+                  item.id_produk
+                }" data-price="${item.harga}">
+                  <img src="http://localhost/Nyokcoffe/public/uploads/${
+                    item.gambar
+                  }" alt="${item.nama_produk}" width="60">
+                  <div class="item-info">
+                    <p>${item.nama_produk}</p>
+                    <p>Rp ${Number(item.harga).toLocaleString("id-ID")}</p>
+                  </div>
+                  <div class="quantity-controls">
+                    <button class="btn-decrease">-</button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="btn-increase">+</button>
+                  </div>
+                  <a href="#" class="btn-remove">
+                    <i class="fa fa-trash"></i>
+                  </a>
+                </div>`;
+              cartContent.append(newItem);
+            });
+            updateTotal();
+          }
+        } catch (error) {
+          console.error("Error parsing response:", error);
+        }
+      },
+      error: function () {
+        console.error("Terjadi kesalahan saat memuat data keranjang.");
+      },
+    });
+  }
+
+  // Panggil fungsi loadCartItems saat halaman dimuat
+  loadCartItems();
+
   $(".produk-cart").on("click", function (e) {
     e.preventDefault();
     const idProduk = $(this).data("id_produk");
@@ -195,7 +243,6 @@ $(document).ready(function () {
     });
   });
 
-  // Event untuk tombol - (decrease quantity)
   $(document).on("click", ".btn-decrease", function () {
     const cartItem = $(this).closest(".cart-item");
     const idProduk = cartItem.data("id");
@@ -210,7 +257,6 @@ $(document).ready(function () {
     }
   });
 
-  // Event untuk tombol + (increase quantity)
   $(document).on("click", ".btn-increase", function () {
     const cartItem = $(this).closest(".cart-item");
     const idProduk = cartItem.data("id");
@@ -221,7 +267,6 @@ $(document).ready(function () {
     updateQuantity(idProduk, quantity, quantityEl);
   });
 
-  // Event untuk tombol hapus
   $(document).on("click", ".btn-remove", function (e) {
     e.preventDefault();
     const cartItem = $(this).closest(".cart-item");
@@ -232,11 +277,10 @@ $(document).ready(function () {
       method: "POST",
       data: { id_produk: idProduk },
       success: function (respons) {
-        // console.log(data);
         const data = JSON.parse(respons);
         if (data.success) {
-          cartItem.remove(); // Hapus elemen dari tampilan
-          updateTotal(); // Perbarui total harga
+          cartItem.remove();
+          updateTotal();
         } else {
           alert(data.message);
         }
@@ -276,4 +320,45 @@ $(document).ready(function () {
     });
     $("#total-price").text(`Rp ${total.toLocaleString("id-ID")}`);
   }
+});
+
+$(document).on("click", "#checkout-button", function () {
+  const cartItems = [];
+  $(".cart-item").each(function () {
+    const idProduk = $(this).data("id");
+    const quantity = parseInt($(this).find(".quantity").text(), 10);
+    const price = parseInt($(this).data("price"), 10);
+
+    cartItems.push({ id_produk: idProduk, quantity, price });
+    console.log(cartItems);
+  });
+
+  if (cartItems.length === 0) {
+    alert("Keranjang kosong! Silakan tambahkan item terlebih dahulu.");
+    return;
+  }
+
+  $.ajax({
+    url: "http://localhost/Nyokcoffe/public/shoppingCart/checkout",
+    method: "POST",
+    data: { items: cartItems },
+    success: function (respons) {
+      try {
+        const data = JSON.parse(respons);
+        if (data.success) {
+          alert("Checkout berhasil! Pesanan Anda sedang diproses.");
+          // Bersihkan keranjang setelah checkout berhasil
+          $("#cart").empty();
+          updateTotal();
+        } else {
+          alert(data.message || "Checkout gagal. Silakan coba lagi.");
+        }
+      } catch (error) {
+        console.error("Error parsing response:", error);
+      }
+    },
+    error: function () {
+      alert("Terjadi kesalahan saat memproses checkout.");
+    },
+  });
 });

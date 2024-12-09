@@ -73,7 +73,8 @@
         <div class="total">
             <span>Total: </span>
             <span id="total-price">Rp 0</span>
+        </div><div id="cart-footer">
+          <button id="checkout-button" class="checkout-btn">Checkout</button>
         </div>
-        <a href="#" class="checkout-btn">Checkout</a>
     </div>
 </div>

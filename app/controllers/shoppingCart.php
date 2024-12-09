@@ -113,4 +113,27 @@ class shoppingCart extends Controller {
             }
         }
     }
+
+    public function getCartItems() {
+        if (isset($_COOKIE['myKey']) && isset($_COOKIE['key'])) {
+            $userID = $_COOKIE['myKey'];
+            $key = $_COOKIE['key'];
+            $result = $this->model('User_model')->getUserById($userID);
+            
+            if ($key === hash('whirlpool', $result['username'])) {
+                $id_cart = $this->model('ProdukUser_model')->getIdCartById($userID);
+                if ($id_cart) {
+                    $cartItems = $this->model('ProdukUser_model')->getCartItems($id_cart['id_cart']);
+                    if ($cartItems) {
+                        echo json_encode(['success' => true, 'cartItems' => $cartItems]);
+                        exit;
+                    }
+                }
+            }
+        }
+    
+        echo json_encode(['success' => false, 'message' => 'Keranjang kosong']);
+        exit;
+    }
+    
 }
