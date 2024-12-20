@@ -174,4 +174,21 @@ class ProdukUser_model{
         return $this->db->resultSet();
     }
 
+    public function deleteCartItems($id){
+        $query = 'DELETE FROM tbl_cart_items 
+            WHERE id_cart = :id_cart';
+        $this->db->query($query);
+        $this->db->bind('id_cart', $id);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function selectAllOrders($userID){
+        $query = 'SELECT * FROM tbl_orders WHERE id_user = :id_user';
+        $this->db->query($query);
+        $this->db->bind('id_user', $userID);
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
+
 }

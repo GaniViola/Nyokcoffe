@@ -13,7 +13,7 @@
     <script src="<?= BASEURL; ?>/js/about-us.js?v=<?php echo time(); ?>" defer></script>
     <script src="<?= BASEURL; ?>/js/contact-us.js?v=<?php echo time(); ?>" defer></script>
     <script src="<?= BASEURL; ?>/js/script.js?v=<?php echo time(); ?>" defer></script>
-    
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-3eR_7kGRG_3Gxsje"></script>    
 </head>
 <body>
 

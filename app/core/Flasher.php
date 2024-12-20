@@ -27,7 +27,7 @@ class Flasher {
                         '.$_SESSION['EmailorUser'].'
                     </a>
                     <div class="dropdown-content">
-                        <a href="#">Profile</a>
+                        <a href="'.BASEURL.'/MyOrders">My Orders</a>
                         <a href="#">Settings</a>
                         <a href="'.BASEURL.'/logout">Logout</a>
                     </div>
