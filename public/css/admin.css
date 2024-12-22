@@ -67,7 +67,7 @@ body {
 
 .toggle-btn i {
   font-size: 1.5rem;
-  color: #fff;
+  color: #000000;
 }
 
 .sidebar-logo {
@@ -92,7 +92,7 @@ body {
 
 a.sidebar-link {
   padding: 0.625rem 1.625rem;
-  color: #fff;
+  color: #000000;
   display: block;
   font-size: 0.9rem;
   white-space: nowrap;
@@ -105,7 +105,7 @@ a.sidebar-link {
 }
 
 a.sidebar-link:hover {
-  background-color: rgba(255, 255, 255, 0.075);
+  background-color: rgba(37, 139, 187, 0.075);
   border-left: 3px solid #3b7ddd;
 }
 
@@ -117,7 +117,7 @@ a.sidebar-link:hover {
   position: absolute;
   top: 0;
   left: 70px;
-  background-color: #1d335f;
+  background-color: #3a4a6b;
   padding: 0;
   min-width: 15rem;
   display: none;

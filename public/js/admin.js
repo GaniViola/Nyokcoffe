@@ -6,6 +6,7 @@ hamBurger.addEventListener("click", function () {
 // ================== Minuman ======================
 $(document).ready(function () {
   $(".tombolTambahData").on("click", function () {
+    console.log("okeee");
     $("#formModalLabel").html("Tambah Data Produk");
     $(".modal-footer button[type=submit]").html("Tambah Data");
     $(".modal-body form").attr(
@@ -79,6 +80,7 @@ $(document).ready(function () {
   });
 
   $(".EditMakanan").on("click", function () {
+    console.log("ada makanan");
     $("#judulModalMakanan").html("Edit Data Produk");
     $(".modal-footer button[type=submit]").html("Edit Data");
     $(".modal-body form").attr(

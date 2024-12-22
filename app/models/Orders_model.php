@@ -51,4 +51,14 @@ class Orders_model {
         $this->db->execute();
         return $this->db->single();
     }
+
+    public function laporan() {
+        $query = 'SELECT tbl_users.username,  
+	tbl_orders.*
+FROM tbl_orders
+INNER JOIN tbl_users ON tbl_orders.id_user = tbl_users.id_user';
+        $this->db->query($query);
+        $this->db->execute();
+        return $this->db->resultSet();
+    }
 }
